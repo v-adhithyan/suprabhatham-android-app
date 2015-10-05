@@ -1,0 +1,15 @@
+<ScrollView
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="fill_parent"
+    android:layout_height="wrap_content"
+    android:fillViewport="true"
+    android:layout_weight="1.0"
+>
+
+    <TextView
+        android:layout_width="fill_parent"
+        android:layout_height="fill_parent"
+        android:textSize="18dp"
+        android:id="@+id/textViewLyrics"
+        android:textColor="#006064"/>
+</ScrollView>

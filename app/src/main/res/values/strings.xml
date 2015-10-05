@@ -1,0 +1,13 @@
+<resources>
+    <string name="app_name">Suprabhatham</string>
+
+    <string name="hello_world">Hello world!</string>
+    <string name="action_settings">Settings</string>
+    <string name="title_activity_song_progress">SongProgress</string>
+    <string name="title_activity_main_">Main_Activity</string>
+    <string name="song_spinner_prompt">Venkateswara Suprabhatham</string>
+    <string name="title_activity_lyrics">Lyrics</string>
+    <string name="title_activity_view_lyrics">ViewLyrics</string>
+    <string name="banner_ad_unit_id_test">ca-app-pub-3940256099942544/6300978111</string>
+    <string name="banner_ad_unit_id">ca-app-pub-1272425295572154/4546266029</string>
+</resources>

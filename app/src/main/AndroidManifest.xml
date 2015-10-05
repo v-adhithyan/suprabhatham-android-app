@@ -1,0 +1,69 @@
+<?xml version="1.0" encoding="utf-8"?>
+<manifest xmlns:android="http://schemas.android.com/apk/res/android"
+    package="ceg.avtechlabs.sbm" >
+
+    <uses-permission android:name="android.permission.VIBRATE" />
+    <uses-permission android:name="android.permission.WAKE_LOCK" />
+    <uses-permission android:name="android.permission.RECEIVE_BOOT_COMPLETED" />
+    <uses-permission android:name="android.permission.INTERNET"/>
+    <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE"/>
+
+    <application
+        android:allowBackup="true"
+        android:icon="@mipmap/ic_launcher"
+        android:label="@string/app_name"
+        android:theme="@style/AppTheme" >
+        <meta-data android:name="com.google.android.gms.version"
+            android:value="@integer/google_play_services_version"/>
+        <activity
+            android:name="ceg.avtechlabs.sbm.MainActivity"
+            android:label="@string/app_name" >
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
+        </activity>
+
+        <receiver
+            android:name="ceg.avtechlabs.sbm.SongScheduler"
+            android:enabled="true"
+            android:exported="true" >
+        </receiver>
+
+
+        <service
+            android:name="ceg.avtechlabs.sbm.MyService"
+            android:enabled="true"
+            android:exported="true" >
+
+        </service>
+
+        <activity
+            android:name="ceg.avtechlabs.sbm.Main_Activity"
+            android:label="@string/title_activity_main_" >
+        </activity>
+        <activity
+            android:name="ceg.avtechlabs.sbm.Lyrics"
+            android:label="@string/title_activity_lyrics" >
+        </activity>
+        <activity
+            android:name="ceg.avtechlabs.sbm.ViewLyrics"
+            android:label="@string/title_activity_view_lyrics" >
+        </activity>
+
+        <receiver
+            android:name="ceg.avtechlabs.sbm.BootReceiver"
+            >
+            <intent-filter>
+                <action android:name="android.intent.action.BOOT_COMPLETED" />
+                <category android:name="android.intent.category.HOME" />
+            </intent-filter>
+        </receiver>
+        
+        <activity android:name="com.google.android.gms.ads.AdActivity"
+            android:configChanges="keyboard|keyboardHidden|orientation|screenLayout|uiMode|screenSize|smallestScreenSize"
+            android:theme="@android:style/Theme.Translucent" />
+    </application>
+
+</manifest>

@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <item name="actionBarColor" type="color">#00838f</item>
+
+    <integer-array name="androidcolors">
+        <item>@color/actionBarColor</item>
+
+    </integer-array>
+
+</resources>
