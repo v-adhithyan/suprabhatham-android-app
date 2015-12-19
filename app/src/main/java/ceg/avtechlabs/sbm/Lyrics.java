@@ -72,6 +72,10 @@ public class Lyrics extends ActionBarActivity {
         intent.putExtra(FILE_NAME,"kannada.txt");
         startActivity(intent);
     }
+    
+    public void showLyrics(){
+       
+    }
 
 }
 
