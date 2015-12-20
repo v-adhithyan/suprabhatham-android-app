@@ -73,7 +73,7 @@ public class Lyrics extends ActionBarActivity {
         startActivity(intent);
     }
     
-    public void showLyrics(){
+    public void showLyrics(String language){
        
     }
 
