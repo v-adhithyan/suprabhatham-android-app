@@ -74,7 +74,7 @@ public class Lyrics extends ActionBarActivity {
     }
     
     public void showLyrics(String language){
-       
+       //generic function to load lyrics
     }
 
 }
