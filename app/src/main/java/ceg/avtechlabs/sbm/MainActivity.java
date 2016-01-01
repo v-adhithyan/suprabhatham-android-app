@@ -9,6 +9,8 @@ import android.os.Bundle;
 import android.view.Menu;
 import android.view.MenuItem;
 
+import static ceg.avtechlabs.sbm.R.string.app_name;
+
 
 public class MainActivity extends ActionBarActivity {
 
@@ -24,7 +26,7 @@ public class MainActivity extends ActionBarActivity {
         setContentView(R.layout.activity_splash_screen);
         getSupportActionBar().setBackgroundDrawable(new ColorDrawable(getResources().getColor(R.color.actionBarColor)));
         progress = new ProgressDialog(this);
-        progress.setTitle("Suprabhatham");
+        progress.setTitle(app_name);
         progress.setMessage("Loading..");
         progress.show();
         new Handler().postDelayed(new Runnable()
