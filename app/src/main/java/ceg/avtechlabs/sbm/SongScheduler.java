@@ -27,7 +27,7 @@ public class SongScheduler extends BroadcastReceiver {
         NotificationManager nm = (NotificationManager)context.getSystemService(Context.NOTIFICATION_SERVICE);
         Notification nt = new Notification(R.drawable.lord_venkat,title,System.currentTimeMillis());
         PendingIntent pi = PendingIntent.getActivity(context,0,new Intent(context,MainActivity.class),0);
-        nt.setLatestEventInfo(context,title,message,pi);
+        //nt.setLatestEventInfo(context,title,message,pi);
         nt.flags |=  Notification.FLAG_AUTO_CANCEL;
 
             nm.notify(id,nt);

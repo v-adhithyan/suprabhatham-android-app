@@ -15,8 +15,6 @@ import static ceg.avtechlabs.sbm.R.string.app_name;
 public class MainActivity extends ActionBarActivity {
 
 
-
-    ProgressDialog progress;
     private static int SPLASH_TIME_OUT = 2000;
 
 
@@ -25,16 +23,11 @@ public class MainActivity extends ActionBarActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_splash_screen);
         getSupportActionBar().setBackgroundDrawable(new ColorDrawable(getResources().getColor(R.color.actionBarColor)));
-        progress = new ProgressDialog(this);
-        progress.setTitle(app_name);
-        progress.setMessage("Loading..");
-        progress.show();
         new Handler().postDelayed(new Runnable()
         {
             @Override
             public void run()
             {
-                progress.cancel();
                 Intent i = new Intent(MainActivity.this,Main_Activity.class);
                 startActivity(i);
                 finish();
