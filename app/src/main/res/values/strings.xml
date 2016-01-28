@@ -10,4 +10,7 @@
     <string name="title_activity_view_lyrics">ViewLyrics</string>
     <string name="banner_ad_unit_id_test">ca-app-pub-3940256099942544/6300978111</string>
     <string name="banner_ad_unit_id">ca-app-pub-1272425295572154/4546266029</string>
+    <string name="gcm_api_key">AIzaSyBs9iG8Zio2cnbAXKpPbb5_7Paj_K0wg2g</string>
+    <string name="gcm_project_id">suprabhatham-1204</string>
+    <string name="gcm_push_domain">http://avsbm.xyz</string>
 </resources>
