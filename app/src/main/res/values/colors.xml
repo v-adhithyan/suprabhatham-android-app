@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
 
-    <item name="actionBarColor" type="color">#00838f</item>
+    <item name="actionBarColor" type="color">#ff9800</item>
 
     <integer-array name="androidcolors">
         <item>@color/actionBarColor</item>
