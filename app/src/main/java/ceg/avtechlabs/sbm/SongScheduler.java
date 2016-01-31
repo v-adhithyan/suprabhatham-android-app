@@ -16,6 +16,11 @@ public class SongScheduler extends BroadcastReceiver {
     public void onReceive(Context context, Intent intent) {
         // TODO: This method is called when the BroadcastReceiver is receiving
         // an Intent broadcast.
+
+
+        //check and set recurring alarm
+        Alarm.setRecurringAlarm(context);
+        
         String title = "Suprabhatham";
         String message = "Suprabhatham is playing...";
         context.deleteFile("hr.txt");

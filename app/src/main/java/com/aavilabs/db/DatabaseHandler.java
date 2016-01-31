@@ -16,7 +16,8 @@ public class DatabaseHandler extends SQLiteOpenHelper {
 
     private static final int DATABASE_VERSION = 1;
     private static final String DATABASE_NAME = "suprabhatham";
-    private static final String TABLE_NAME = "alarms";
+    private static final String ALARM_TABLE_NAME = "alarms";
+    public static final String RECURRING_TABLE = "recurring";
 
     private static final String ID = "id";
     private static final String TIME = "time";
@@ -28,8 +29,12 @@ public class DatabaseHandler extends SQLiteOpenHelper {
 
     @Override
     public void onCreate(SQLiteDatabase db) {
-        String createTable = "create table " + TABLE_NAME + " (" + ID + " INTEGER PRIMARY KEY AUTOINCREMENT," + TIME + " char(30))";
-        db.execSQL(createTable);
+        String createAlarmTable = "create table " + ALARM_TABLE_NAME + " (" + ID + " INTEGER PRIMARY KEY AUTOINCREMENT," + TIME + " char(30))";
+        db.execSQL(createAlarmTable);
+
+        String createRecurringTable = "create table " + RECURRING_TABLE + " (TIME char(30))";
+        db.execSQL("delete from recurring;vacuum");
+        db.execSQL(createRecurringTable);
     }
 
     @Override
@@ -37,12 +42,12 @@ public class DatabaseHandler extends SQLiteOpenHelper {
 
     }
 
-    public void insert(String time){
+    public void insert(String tableName, String time){
         ContentValues cv = new ContentValues();
         cv.put(TIME, time);
 
         SQLiteDatabase db = this.getWritableDatabase();
-        db.insert(TABLE_NAME, null, cv);
+        db.insert(tableName, null, cv);
 
         db.close();
     }
@@ -51,7 +56,7 @@ public class DatabaseHandler extends SQLiteOpenHelper {
         SQLiteDatabase db = this.getWritableDatabase();
         String[] values = {String.valueOf(id)};
 
-        db.delete(TABLE_NAME, ID + " = ?", values);
+        db.delete(ALARM_TABLE_NAME, ID + " = ?", values);
 
         db.close();
     }
@@ -59,7 +64,7 @@ public class DatabaseHandler extends SQLiteOpenHelper {
     public TreeMap<Integer, String> getAllTime(){
         TreeMap<Integer, String> timeMap = new TreeMap<Integer, String>();
 
-        String select = "SELECT * FROM " + TABLE_NAME;
+        String select = "SELECT * FROM " + ALARM_TABLE_NAME;
 
         SQLiteDatabase db = this.getWritableDatabase();
         Cursor cursor = db.rawQuery(select, null);
@@ -77,5 +82,24 @@ public class DatabaseHandler extends SQLiteOpenHelper {
         db.close();
 
         return timeMap;
+    }
+
+    public boolean isRecurringAlarm(){
+        String select = "SELECT count(time) from " + RECURRING_TABLE;
+
+        SQLiteDatabase db = this.getWritableDatabase();
+        Cursor cursor = db.rawQuery(select, null);
+
+        int count = cursor.getCount();
+
+        db.close();
+
+        if(count > 0){
+            return true;
+        }
+        else{
+            return false;
+        }
+
     }
 }

@@ -43,7 +43,7 @@ public class Main_Activity extends ActionBarActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
         getSupportActionBar().setBackgroundDrawable(new ColorDrawable(getResources().getColor(R.color.actionBarColor)));
-        setTitle("Suprabhatham");
+        setTitle(R.string.app_name);
         AdView mAdView = (AdView) findViewById(R.id.adView);
         AdRequest adRequest = new AdRequest.Builder().build();
         mAdView.loadAd(adRequest);
@@ -272,5 +272,17 @@ public class Main_Activity extends ActionBarActivity {
             return false;
         }
 
+    }
+
+    private void recurringAlert(String hour, String min){
+        AlertDialog.Builder alert = new AlertDialog.Builder(this).setTitle("Confirmation")
+                .setMessage("Do you want to play Suprabhatham at scheduled time everyday?")
+                .setPositiveButton("Yes", new DialogInterface.OnClickListener() {
+                    @Override
+                    public void onClick(DialogInterface dialog, int which) {
+
+                    }
+                })
+                .setNegativeButton("No", null);
     }
 }

@@ -9,6 +9,7 @@ import android.widget.Toast;
 
 import java.io.FileInputStream;
 import java.util.Calendar;
+import java.util.LinkedList;
 
 public class BootReceiver extends BroadcastReceiver {
     public BootReceiver() {
@@ -94,12 +95,7 @@ public class BootReceiver extends BroadcastReceiver {
 
             int ms = (hrs * 60 * 60 * 1000) + (mins * 60 * 1000);
 
-            Intent intnt = new Intent(context, SongScheduler.class);
-            PendingIntent pi = PendingIntent.getBroadcast(context, 2011103592, intnt, 0);
-            AlarmManager alarmManager = (AlarmManager) context.getSystemService(Context.ALARM_SERVICE);
-            alarmManager.set(AlarmManager.RTC_WAKEUP, System.currentTimeMillis() + ms, pi);
-            Toast.makeText(context, "Suprabhadham will play after " + hrs + " hours " + mins + " minutes from now", Toast.LENGTH_SHORT).show();
-
+            Alarm.setAlarm(context, ms);
 
         }
     }
