@@ -6,10 +6,16 @@ import android.graphics.drawable.ColorDrawable;
 import android.os.Handler;
 import android.support.v7.app.ActionBarActivity;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.Window;
 import android.view.WindowManager;
+
+import com.aavilabs.db.DatabaseHandler;
+
+import java.util.Date;
+import java.util.TreeMap;
 
 import static ceg.avtechlabs.sbm.R.string.app_name;
 
