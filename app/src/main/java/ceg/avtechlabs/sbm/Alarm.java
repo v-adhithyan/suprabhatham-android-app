@@ -26,7 +26,6 @@ public class Alarm {
 
     public static void checkAndSetRecurringAlarm(Context context){
         if(new DatabaseHandler(context).isRecurringAlarm()){
-            Log.d("recurrinh", "true");
             int day = 24 * 60 * 60 * 1000; //play after 24 hours
             setAlarm(context, day);
         }
