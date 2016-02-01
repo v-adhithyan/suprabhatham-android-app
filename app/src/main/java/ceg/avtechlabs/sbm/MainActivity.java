@@ -34,6 +34,7 @@ public class MainActivity extends ActionBarActivity {
         super.onCreate(savedInstanceState);
 
         setContentView(R.layout.activity_splash_screen);
+        Log.d("recurring", new DatabaseHandler(this).isRecurringAlarm() + "");
 
         new Handler().postDelayed(new Runnable()
         {

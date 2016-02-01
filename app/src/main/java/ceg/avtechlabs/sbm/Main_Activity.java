@@ -23,6 +23,7 @@ import android.widget.Spinner;
 import android.widget.TimePicker;
 import android.widget.Toast;
 
+import com.aavilabs.db.DatabaseHandler;
 import com.google.android.gms.ads.AdRequest;
 import com.google.android.gms.ads.AdView;
 
@@ -202,6 +203,8 @@ public class Main_Activity extends ActionBarActivity {
 
                         int ms = (hrs * 60 * 60 * 1000) + (mins * 60 * 1000);
 
+                        recurringAlert();
+
                         Intent intent = new Intent(getApplicationContext(), SongScheduler.class);
                         PendingIntent pi = PendingIntent.getBroadcast(getApplicationContext(), 2011103592, intent, 0);
                         AlarmManager alarmManager = (AlarmManager) getSystemService(Context.ALARM_SERVICE);
@@ -274,15 +277,17 @@ public class Main_Activity extends ActionBarActivity {
 
     }
 
-    private void recurringAlert(String hour, String min){
+    private void recurringAlert(){
         AlertDialog.Builder alert = new AlertDialog.Builder(this).setTitle("Confirmation")
                 .setMessage("Do you want to play Suprabhatham at scheduled time everyday?")
                 .setPositiveButton("Yes", new DialogInterface.OnClickListener() {
                     @Override
                     public void onClick(DialogInterface dialog, int which) {
-
+                        DatabaseHandler db = new DatabaseHandler(getApplicationContext());
+                        db.insert(DatabaseHandler.RECURRING_TABLE, System.currentTimeMillis() + "");
                     }
                 })
                 .setNegativeButton("No", null);
+        alert.show();
     }
 }

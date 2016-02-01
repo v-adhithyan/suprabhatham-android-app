@@ -7,8 +7,14 @@ import android.content.BroadcastReceiver;
 import android.content.Context;
 import android.content.Intent;
 import android.os.Vibrator;
+import android.support.v4.app.NotificationCompat;
+
+import java.util.HashMap;
 
 public class SongScheduler extends BroadcastReceiver {
+    NotificationManager manager;
+    Notification notification;
+
     public SongScheduler() {
     }
 
@@ -17,25 +23,28 @@ public class SongScheduler extends BroadcastReceiver {
         // TODO: This method is called when the BroadcastReceiver is receiving
         // an Intent broadcast.
 
-
         //check and set recurring alarm
-        Alarm.setRecurringAlarm(context);
-        
+        Alarm.checkAndSetRecurringAlarm(context);
+
         String title = "Suprabhatham";
         String message = "Suprabhatham is playing...";
         context.deleteFile("hr.txt");
         context.deleteFile("min.txt");
-        //Toast.makeText(context, "hr and min files deleted..", Toast.LENGTH_LONG).show();
+
         Vibrator vibrate = (Vibrator)context.getSystemService(Context.VIBRATOR_SERVICE);
         vibrate.vibrate(2500);
-        int id = 3592;
-        NotificationManager nm = (NotificationManager)context.getSystemService(Context.NOTIFICATION_SERVICE);
-        Notification nt = new Notification(R.drawable.lord_venkat,title,System.currentTimeMillis());
-        PendingIntent pi = PendingIntent.getActivity(context,0,new Intent(context,MainActivity.class),0);
-        //nt.setLatestEventInfo(context,title,message,pi);
-        nt.flags |=  Notification.FLAG_AUTO_CANCEL;
 
-            nm.notify(id,nt);
+        PendingIntent pi = PendingIntent.getActivity(context,0,new Intent(context,MainActivity.class),0);
+
+        HashMap<String, Object> arguments = new HashMap<String, Object>();
+        arguments.put("title", title);
+        arguments.put("message", message);
+        arguments.put("intent", pi);
+
+        ceg.avtechlabs.sbm.Notification.showNotification(context, arguments);
+
         context.startService(new Intent(context, MyService.class));
     }
+
+
 }

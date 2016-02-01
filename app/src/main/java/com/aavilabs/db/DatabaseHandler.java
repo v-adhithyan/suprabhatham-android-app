@@ -16,7 +16,7 @@ public class DatabaseHandler extends SQLiteOpenHelper {
 
     private static final int DATABASE_VERSION = 1;
     private static final String DATABASE_NAME = "suprabhatham";
-    private static final String ALARM_TABLE_NAME = "alarms";
+    public static final String ALARM_TABLE_NAME = "alarms";
     public static final String RECURRING_TABLE = "recurring";
 
     private static final String ID = "id";
@@ -33,7 +33,6 @@ public class DatabaseHandler extends SQLiteOpenHelper {
         db.execSQL(createAlarmTable);
 
         String createRecurringTable = "create table " + RECURRING_TABLE + " (TIME char(30))";
-        db.execSQL("delete from recurring;vacuum");
         db.execSQL(createRecurringTable);
     }
 

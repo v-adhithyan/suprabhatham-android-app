@@ -4,6 +4,7 @@ import android.app.AlarmManager;
 import android.app.PendingIntent;
 import android.content.Context;
 import android.content.Intent;
+import android.util.Log;
 import android.widget.Toast;
 
 import com.aavilabs.db.DatabaseHandler;
@@ -23,8 +24,9 @@ public class Alarm {
         alarmManager.set(AlarmManager.RTC_WAKEUP, System.currentTimeMillis() + time, pi);
     }
 
-    public static void setRecurringAlarm(Context context){
+    public static void checkAndSetRecurringAlarm(Context context){
         if(new DatabaseHandler(context).isRecurringAlarm()){
+            Log.d("recurrinh", "true");
             int day = 24 * 60 * 60 * 1000; //play after 24 hours
             setAlarm(context, day);
         }
