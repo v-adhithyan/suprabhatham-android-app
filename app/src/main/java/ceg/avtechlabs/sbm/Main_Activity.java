@@ -190,7 +190,9 @@ public class Main_Activity extends ActionBarActivity {
         switch (id)
         {
             case TIME_DIALOG_ID:
-                return new TimePickerDialog(this,tpl, TimeUtil.getCurrentHour() ,TimeUtil.getCurrentMinute(),false);
+                TimePickerDialog timePickerDialog =  new TimePickerDialog(this,tpl, TimeUtil.getCurrentHour() ,TimeUtil.getCurrentMinute(),false);
+                timePickerDialog.setCancelable(true);
+                return timePickerDialog;
 
         }
         return null;
@@ -198,12 +200,6 @@ public class Main_Activity extends ActionBarActivity {
     public void initTime()
     {
         tp = (TimePicker)findViewById(R.id.timePicker);
-        int currentHour = TimeUtil.getCurrentHour();
-        int currentMinute = TimeUtil.getCurrentMinute();
-
-        Toast.makeText(getApplicationContext(), "hour:" + currentHour + "==> min:" + currentMinute,  Toast.LENGTH_LONG).show();
-        tp.setCurrentHour(currentHour);
-        tp.setCurrentMinute(currentMinute);
     }
 
     private TimePickerDialog.OnTimeSetListener tpl = new TimePickerDialog.OnTimeSetListener(){
