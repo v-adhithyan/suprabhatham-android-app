@@ -30,6 +30,9 @@ import com.google.android.gms.ads.AdView;
 import java.io.FileOutputStream;
 import java.util.Calendar;
 
+import ceg.avtechlabs.sbm.util.FileUtil;
+import ceg.avtechlabs.sbm.util.TimeUtil;
+
 
 public class Main_Activity extends ActionBarActivity {
     TimePicker tp;
@@ -158,50 +161,11 @@ public class Main_Activity extends ActionBarActivity {
                         boolean negativeHr = false;
                         String tmphr = chosenHour + "" ;
                         String tmpmin = chosenMinute +"";
-                        try {
-                            FileOutputStream fout = openFileOutput("hr.txt",Context.MODE_WORLD_READABLE);
-                            fout.write(tmphr.getBytes());
-                            fout = openFileOutput("min.txt",Context.MODE_WORLD_READABLE);
-                            fout.write(tmpmin.getBytes());
-                            fout.close();
-                            //Toast.makeText(getApplicationContext(),"Hr and Min file created..",Toast.LENGTH_SHORT).show();
 
-                        } catch (Exception ex) {
-                            ex.printStackTrace();
-                        }
+                        FileUtil.write(getApplicationContext(), FileUtil.HOUR_FILE, tmphr);
+                        FileUtil.write(getApplicationContext(), FileUtil.MINUTE_FILE, tmpmin);
 
-                        if (chosenHour < chour) {
-
-                            hrs = -24 + (chour - chosenHour);
-
-                        }
-                        if (chosenHour == chour) {
-                            if (chosenMinute < cmin)
-                                hrs = 24;
-                            else
-                                hrs = 0;
-                        } else
-                            hrs = chosenHour - chour;
-                        if (hrs < 0) {
-                            negativeHr = true;
-                            hrs = 24 + hrs;
-                        }
-                        //Toast.makeText(getApplicationContext(), "Expected hour:"+hrs, Toast.LENGTH_SHORT).show();
-
-                        if (chosenMinute < cmin) {
-
-                            if (hrs != 0)
-                                hrs--;
-
-                            mins = 60 - (cmin - chosenMinute);
-                            // Toast.makeText(getApplicationContext(), "Expected hour:"+hrs, Toast.LENGTH_SHORT).show();
-
-                        } else {
-                            mins = chosenMinute - cmin;
-                        }
-                        //Toast.makeText(getApplicationContext(), "Expected min:"+mins, Toast.LENGTH_LONG).show();
-
-                        int ms = (hrs * 60 * 60 * 1000) + (mins * 60 * 1000);
+                        int ms = TimeUtil.getMilliSeconds(chosenHour, chosenMinute);
 
                         recurringAlert();
 
