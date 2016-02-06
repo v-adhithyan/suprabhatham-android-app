@@ -155,9 +155,10 @@ public class Main_Activity extends ActionBarActivity {
                 .setPositiveButton("Yes", new DialogInterface.OnClickListener() {
                     @Override
                     public void onClick(DialogInterface dialog, int which) {
-                        Calendar cal = Calendar.getInstance();
-                        int chour = cal.get(Calendar.HOUR_OF_DAY);
-                        int cmin = cal.get(Calendar.MINUTE);
+
+                        int chour = TimeUtil.getCurrentHour();
+                        int cmin = TimeUtil.getCurrentMinute();
+
                         int hrs = 0, mins = 0;
                         boolean negativeHr = false;
                         String tmphr = chosenHour + "" ;
@@ -189,7 +190,7 @@ public class Main_Activity extends ActionBarActivity {
         switch (id)
         {
             case TIME_DIALOG_ID:
-                return new TimePickerDialog(this,tpl,hour,min,false);
+                return new TimePickerDialog(this,tpl, TimeUtil.getCurrentHour() ,TimeUtil.getCurrentMinute(),false);
 
         }
         return null;
@@ -197,11 +198,12 @@ public class Main_Activity extends ActionBarActivity {
     public void initTime()
     {
         tp = (TimePicker)findViewById(R.id.timePicker);
-        Calendar c = Calendar.getInstance();
-        hour = c.get(Calendar.HOUR_OF_DAY);
-        min = c.get(Calendar.MINUTE);
-        tp.setCurrentHour(hour);
-        tp.setCurrentMinute(min);
+        int currentHour = TimeUtil.getCurrentHour();
+        int currentMinute = TimeUtil.getCurrentMinute();
+
+        Toast.makeText(getApplicationContext(), "hour:" + currentHour + "==> min:" + currentMinute,  Toast.LENGTH_LONG).show();
+        tp.setCurrentHour(currentHour);
+        tp.setCurrentMinute(currentMinute);
     }
 
     private TimePickerDialog.OnTimeSetListener tpl = new TimePickerDialog.OnTimeSetListener(){

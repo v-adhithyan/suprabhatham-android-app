@@ -40,7 +40,7 @@ public class BootReceiver extends BroadcastReceiver {
         }
 
         if(noSchedule)
-        {}//Toast.makeText(context,"No schedule.",Toast.LENGTH_LONG).show();
+        ;
         else if(chosenHour!=25 &&chosenMinute!=61)
         {
             int ms = TimeUtil.getMilliSeconds(chosenHour, chosenMinute).get(2);

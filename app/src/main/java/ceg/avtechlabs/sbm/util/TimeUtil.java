@@ -56,4 +56,15 @@ public class TimeUtil {
 
         return response;
     }
+
+    public static int getCurrentHour(){
+        Calendar cal = Calendar.getInstance();
+        return cal.get(Calendar.HOUR_OF_DAY);
+    }
+
+    public static int getCurrentMinute(){
+        Calendar cal = Calendar.getInstance();
+        return cal.get(Calendar.MINUTE);
+    }
+
 }

@@ -11,6 +11,8 @@ import android.support.v4.app.NotificationCompat;
 
 import java.util.HashMap;
 
+import ceg.avtechlabs.sbm.util.FileUtil;
+
 public class SongScheduler extends BroadcastReceiver {
     NotificationManager manager;
     Notification notification;
@@ -28,8 +30,9 @@ public class SongScheduler extends BroadcastReceiver {
 
         String title = "Suprabhatham";
         String message = "Suprabhatham is playing...";
-        context.deleteFile("hr.txt");
-        context.deleteFile("min.txt");
+
+        FileUtil.delete(context, FileUtil.HOUR_FILE);
+        FileUtil.delete(context, FileUtil.MINUTE_FILE);
 
         Vibrator vibrate = (Vibrator)context.getSystemService(Context.VIBRATOR_SERVICE);
         vibrate.vibrate(2500);

@@ -44,4 +44,8 @@ public class FileUtil {
 
         return content;
     }
+
+    public static void delete(Context context, String fileName){
+        context.deleteFile(fileName);
+    }
 }
