@@ -29,6 +29,7 @@ import com.google.android.gms.ads.AdView;
 
 import java.io.FileOutputStream;
 import java.util.Calendar;
+import java.util.LinkedList;
 
 import ceg.avtechlabs.sbm.util.FileUtil;
 import ceg.avtechlabs.sbm.util.TimeUtil;
@@ -165,7 +166,11 @@ public class Main_Activity extends ActionBarActivity {
                         FileUtil.write(getApplicationContext(), FileUtil.HOUR_FILE, tmphr);
                         FileUtil.write(getApplicationContext(), FileUtil.MINUTE_FILE, tmpmin);
 
-                        int ms = TimeUtil.getMilliSeconds(chosenHour, chosenMinute);
+                        LinkedList<Integer> time = TimeUtil.getMilliSeconds(chosenHour, chosenMinute);
+
+                        hrs = time.get(0);
+                        mins = time.get(1);
+                        int ms = time.get(2);
 
                         recurringAlert();
 

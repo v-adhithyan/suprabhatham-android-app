@@ -1,13 +1,14 @@
 package ceg.avtechlabs.sbm.util;
 
 import java.util.Calendar;
+import java.util.LinkedList;
 
 /**
  * Created by adhithyan-3592 on 06/02/16.
  */
 public class TimeUtil {
 
-    public static int getMilliSeconds(int chosenHour, int chosenMinute){
+    public static LinkedList<Integer> getMilliSeconds(int chosenHour, int chosenMinute){
         Calendar cal = Calendar.getInstance();
         int chour = cal.get(Calendar.HOUR_OF_DAY);
         int cmin = cal.get(Calendar.MINUTE);
@@ -47,6 +48,12 @@ public class TimeUtil {
 
         int ms = (hrs * 60 * 60 * 1000) + (mins * 60 * 1000);
 
-        return ms;
+        LinkedList<Integer> response = new LinkedList<Integer>();
+
+        response.add(hrs);
+        response.add(mins);
+        response.add(ms);
+
+        return response;
     }
 }

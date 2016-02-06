@@ -27,7 +27,7 @@ public class BootReceiver extends BroadcastReceiver {
         int chosenHour = 25, chosenMinute = 61;
         boolean noSchedule = false;
 
-        
+
         String hour = FileUtil.read(context, FileUtil.HOUR_FILE);
         String minute = FileUtil.read(context, FileUtil.MINUTE_FILE);
 
@@ -43,7 +43,7 @@ public class BootReceiver extends BroadcastReceiver {
         {}//Toast.makeText(context,"No schedule.",Toast.LENGTH_LONG).show();
         else if(chosenHour!=25 &&chosenMinute!=61)
         {
-            int ms = TimeUtil.getMilliSeconds(chosenHour, chosenMinute);
+            int ms = TimeUtil.getMilliSeconds(chosenHour, chosenMinute).get(2);
             Alarm.setAlarm(context, ms);
 
         }
