@@ -174,10 +174,7 @@ public class Main_Activity extends ActionBarActivity {
 
                         recurringAlert();
 
-                        Intent intent = new Intent(getApplicationContext(), SongScheduler.class);
-                        PendingIntent pi = PendingIntent.getBroadcast(getApplicationContext(), 2011103592, intent, 0);
-                        AlarmManager alarmManager = (AlarmManager) getSystemService(Context.ALARM_SERVICE);
-                        alarmManager.set(AlarmManager.RTC_WAKEUP, System.currentTimeMillis() + ms, pi);
+                        Alarm.setAlarm(getApplicationContext(), ms);
                         Toast.makeText(getApplicationContext(), "Suprabhadham will play after " + hrs + " hours " + mins + " minutes from now", Toast.LENGTH_SHORT).show();
                     }
 
