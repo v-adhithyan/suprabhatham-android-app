@@ -32,6 +32,7 @@ import java.util.Calendar;
 import java.util.LinkedList;
 
 import ceg.avtechlabs.sbm.util.FileUtil;
+import ceg.avtechlabs.sbm.util.InfoUtil;
 import ceg.avtechlabs.sbm.util.TimeUtil;
 
 
@@ -42,7 +43,7 @@ public class Main_Activity extends ActionBarActivity {
     MediaPlayer player;
     boolean songPlaying;
     Spinner spinner;
-
+    boolean cancel = false;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -52,6 +53,8 @@ public class Main_Activity extends ActionBarActivity {
         AdView mAdView = (AdView) findViewById(R.id.adView);
         AdRequest adRequest = new AdRequest.Builder().build();
         mAdView.loadAd(adRequest);
+
+        //InfoUtil.getEmailAddress(this);
     }
 
 
@@ -117,7 +120,7 @@ public class Main_Activity extends ActionBarActivity {
     public void playSong(View v)
     {
         int id = 3592;
-        startService(new Intent(getBaseContext(),MyService.class));
+        startService(new Intent(getBaseContext(), MyService.class));
     }
     /*public void pauseSong(View v)
     {
@@ -127,7 +130,7 @@ public class Main_Activity extends ActionBarActivity {
     }*/
     public void stopSong(View v)
     {
-        stopService(new Intent(getBaseContext(),MyService.class));
+        stopService(new Intent(getBaseContext(), MyService.class));
     }
     public void startScheduler(View v)
     {
@@ -150,30 +153,34 @@ public class Main_Activity extends ActionBarActivity {
             ap = "AM";
         else
             ap = "PM";
-        AlertDialog.Builder scheduleAlerter = new AlertDialog.Builder(this).setTitle("Scheduler")
-                .setMessage("Schedule Suprabhatham to play at " + hr + ":" + chosenMinute + " " + ap)
-                .setPositiveButton("Yes", new DialogInterface.OnClickListener() {
-                    @Override
-                    public void onClick(DialogInterface dialog, int which) {
 
-                        FileUtil.write(getApplicationContext(), FileUtil.HOUR_FILE, chosenHour + "");
-                        FileUtil.write(getApplicationContext(), FileUtil.MINUTE_FILE, chosenMinute + "");
+        //this condition checks if hour and minute are equal to initialized values. If so, the user has not chosen time, so don't display the alert.
+        if(chosenHour != 25 && chosenMinute != 61){
+            AlertDialog.Builder scheduleAlerter = new AlertDialog.Builder(this).setTitle("Scheduler")
+                    .setMessage("Schedule Suprabhatham to play at " + hr + ":" + chosenMinute + " " + ap)
+                    .setPositiveButton("Yes", new DialogInterface.OnClickListener() {
+                        @Override
+                        public void onClick(DialogInterface dialog, int which) {
 
-                        LinkedList<Integer> time = TimeUtil.getMilliSeconds(chosenHour, chosenMinute);
+                            FileUtil.write(getApplicationContext(), FileUtil.HOUR_FILE, chosenHour + "");
+                            FileUtil.write(getApplicationContext(), FileUtil.MINUTE_FILE, chosenMinute + "");
 
-                        int hrs = time.get(0);
-                        int mins = time.get(1);
-                        int ms = time.get(2);
+                            LinkedList<Integer> time = TimeUtil.getMilliSeconds(chosenHour, chosenMinute);
 
-                        recurringAlert();
+                            int hrs = time.get(0);
+                            int mins = time.get(1);
+                            int ms = time.get(2);
 
-                        Alarm.setAlarm(getApplicationContext(), ms);
-                        Toast.makeText(getApplicationContext(), "Suprabhadham will play after " + hrs + " hours " + mins + " minutes from now", Toast.LENGTH_SHORT).show();
-                    }
+                            recurringAlert();
 
-                })
-                .setNegativeButton("No", null);
-        scheduleAlerter.show();
+                            Alarm.setAlarm(getApplicationContext(), ms);
+                            Toast.makeText(getApplicationContext(), "Suprabhadham will play after " + hrs + " hours " + mins + " minutes from now", Toast.LENGTH_SHORT).show();
+                        }
+
+                    })
+                    .setNegativeButton("No", null);
+            scheduleAlerter.show();
+        }
     }
 
     @Override
@@ -182,7 +189,13 @@ public class Main_Activity extends ActionBarActivity {
         switch (id)
         {
             case TIME_DIALOG_ID:
-                TimePickerDialog timePickerDialog =  new TimePickerDialog(this,tpl, TimeUtil.getCurrentHour() ,TimeUtil.getCurrentMinute(),false);
+                final TimePickerDialog timePickerDialog =  new TimePickerDialog(this,tpl, TimeUtil.getCurrentHour() ,TimeUtil.getCurrentMinute(),false);
+                timePickerDialog.setOnCancelListener(new DialogInterface.OnCancelListener() {
+                    @Override
+                    public void onCancel(DialogInterface dialog) {
+                        dialog.dismiss();
+                    }
+                });
                 timePickerDialog.setCancelable(true);
                 return timePickerDialog;
 
@@ -198,8 +211,6 @@ public class Main_Activity extends ActionBarActivity {
         public void onTimeSet(TimePicker view,int shour,int smin)
         {
             //Toast.makeText(getApplicationContext(), shour + ":" + smin, Toast.LENGTH_SHORT).show();
-            chosenHour = shour;
-            chosenMinute = smin;
             chooseTime();
         }
 
