@@ -156,21 +156,13 @@ public class Main_Activity extends ActionBarActivity {
                     @Override
                     public void onClick(DialogInterface dialog, int which) {
 
-                        int chour = TimeUtil.getCurrentHour();
-                        int cmin = TimeUtil.getCurrentMinute();
-
-                        int hrs = 0, mins = 0;
-                        boolean negativeHr = false;
-                        String tmphr = chosenHour + "" ;
-                        String tmpmin = chosenMinute +"";
-
-                        FileUtil.write(getApplicationContext(), FileUtil.HOUR_FILE, tmphr);
-                        FileUtil.write(getApplicationContext(), FileUtil.MINUTE_FILE, tmpmin);
+                        FileUtil.write(getApplicationContext(), FileUtil.HOUR_FILE, chosenHour + "");
+                        FileUtil.write(getApplicationContext(), FileUtil.MINUTE_FILE, chosenMinute + "");
 
                         LinkedList<Integer> time = TimeUtil.getMilliSeconds(chosenHour, chosenMinute);
 
-                        hrs = time.get(0);
-                        mins = time.get(1);
+                        int hrs = time.get(0);
+                        int mins = time.get(1);
                         int ms = time.get(2);
 
                         recurringAlert();
