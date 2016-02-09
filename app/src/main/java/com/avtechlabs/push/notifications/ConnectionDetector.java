@@ -10,13 +10,7 @@ import android.net.NetworkInfo;
 
 public class ConnectionDetector {
 
-    private Context context;
-
-    public ConnectionDetector(Context context){
-        this.context = context;
-    }
-
-    public boolean isConnectedToInternet() {
+    public static boolean isConnectedToInternet(Context context) {
         ConnectivityManager connectivity = (ConnectivityManager) context.getSystemService(Context.CONNECTIVITY_SERVICE);
 
         if(connectivity != null){

@@ -22,14 +22,18 @@ public class Notification {
 
         String title = arguments.get("title").toString();
         String message = arguments.get("message").toString();
-        PendingIntent pi = (PendingIntent) (arguments.containsKey("intent") ? arguments.get("intent") : null);
+        PendingIntent pi = (PendingIntent)(arguments.containsKey("intent") ? arguments.get("intent") : null);
 
         int randomNumber = (int)Math.random();
 
+        builder.setSmallIcon(R.drawable.splash);
         builder.setContentTitle(title);
         builder.setContentText(message);
-        builder.setSmallIcon(R.drawable.lord_venkat);
-        builder.setContentIntent(pi);
+
+        if(pi != null){
+            builder.setContentIntent(pi);
+        }
+
         builder.setOngoing(true);
         builder.setNumber(randomNumber);
         builder.build();

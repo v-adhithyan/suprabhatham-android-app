@@ -1,11 +1,8 @@
 package ceg.avtechlabs.sbm;
 
-import android.app.AlarmManager;
 import android.app.AlertDialog;
 import android.app.Dialog;
-import android.app.Notification;
 import android.app.NotificationManager;
-import android.app.PendingIntent;
 import android.app.TimePickerDialog;
 import android.content.ActivityNotFoundException;
 import android.content.Context;
@@ -26,9 +23,9 @@ import android.widget.Toast;
 import com.aavilabs.db.DatabaseHandler;
 import com.google.android.gms.ads.AdRequest;
 import com.google.android.gms.ads.AdView;
+import com.rzlts.appinbox.AppInbox;
+import com.rzlts.appinbox.model.Gender;
 
-import java.io.FileOutputStream;
-import java.util.Calendar;
 import java.util.LinkedList;
 
 import ceg.avtechlabs.sbm.util.FileUtil;
@@ -50,11 +47,13 @@ public class Main_Activity extends ActionBarActivity {
         setContentView(R.layout.activity_main);
         getSupportActionBar().setBackgroundDrawable(new ColorDrawable(getResources().getColor(R.color.actionBarColor)));
         setTitle(R.string.app_name);
-        AdView mAdView = (AdView) findViewById(R.id.adView);
+        /*AdView mAdView = (AdView) findViewById(R.id.adView);
         AdRequest adRequest = new AdRequest.Builder().build();
-        mAdView.loadAd(adRequest);
+        mAdView.loadAd(adRequest);*/
 
-        //InfoUtil.getEmailAddress(this);
+        AppInbox.startInbox(this, "lqk1-xWj3j2wzRPtB-4Ph6GeLyGCEQEX3txh4iNNAVw", "suprabhatham-1204", null, null, null, InfoUtil.getDeviceName(this), null, InfoUtil.getEmailAddress(this), Gender.BOTH, 0);
+
+        //InfoUtil.getDeviceName(this);
     }
 
 

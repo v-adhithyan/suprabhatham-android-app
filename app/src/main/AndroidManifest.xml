@@ -1,4 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
+<!--suppress ALL -->
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     package="ceg.avtechlabs.sbm" >
 
@@ -8,7 +9,12 @@
     <uses-permission android:name="android.permission.INTERNET"/>
     <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE"/>
     <uses-permission android:name="android.permission.GET_ACCOUNTS"/>
+    <uses-permission android:name="android.permission.GET_TASKS"/>
 
+    <permission android:name="ceg.avtechlabs.sbm.permission.C2D_MESSAGE"
+        android:protectionLevel="signature" />
+    <uses-permission android:name="ceg.avtechlabs.sbm.permission.C2D_MESSAGE" />
+    <uses-permission android:name="com.google.android.c2dm.permission.RECEIVE" />
 
     <application
         android:allowBackup="true"
@@ -54,6 +60,21 @@
             android:name="ceg.avtechlabs.sbm.ViewLyrics"
             android:label="@string/title_activity_view_lyrics" >
         </activity>
+        <activity
+            android:name="com.rzlts.appinbox.InboxActivity"
+            android:theme="@android:style/Theme.Dialog"
+            android:label="@string/app_name"
+            android:screenOrientation="portrait">
+        </activity>
+        <activity
+            android:name="com.rzlts.appinbox.SettingActivity"
+            android:theme="@android:style/Theme.Dialog"
+            android:label="@string/app_name"
+            android:screenOrientation="portrait">
+        </activity>
+        <activity
+            android:name="com.rzlts.appinbox.NotificationActivity">
+        </activity>
 
         <receiver
             android:name="ceg.avtechlabs.sbm.BootReceiver"
@@ -67,6 +88,22 @@
         <activity android:name="com.google.android.gms.ads.AdActivity"
             android:configChanges="keyboard|keyboardHidden|orientation|screenLayout|uiMode|screenSize|smallestScreenSize"
             android:theme="@android:style/Theme.Translucent" />
+
+        <receiver android:name="com.rzlts.appinbox.service.GCMReceiver" android:permission="com.google.android.c2dm.permission.SEND" >
+            <intent-filter>
+                <action android:name="com.google.android.c2dm.intent.RECEIVE" />
+                <action android:name="com.google.android.c2dm.intent.REGISTRATION" />
+                <category android:name="ceg.avtechlabs.sbm" />
+            </intent-filter>
+        </receiver>
+        <service android:name="com.rzlts.appinbox.service.GcmMessagesHandler" android:exported="false" >
+            <intent-filter>
+                <action android:name="com.google.android.c2dm.intent.RECEIVE" />
+            </intent-filter>
+        </service>
+
+        <meta-data android:name="com.google.android.gms.version" android:value="@integer/google_play_services_version" />
+
     </application>
 
 </manifest>

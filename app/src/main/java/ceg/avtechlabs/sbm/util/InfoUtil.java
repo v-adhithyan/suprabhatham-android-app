@@ -3,6 +3,7 @@ package ceg.avtechlabs.sbm.util;
 import android.accounts.Account;
 import android.accounts.AccountManager;
 import android.content.Context;
+import android.os.Build;
 import android.util.Patterns;
 import android.widget.Toast;
 
@@ -27,7 +28,14 @@ public class InfoUtil {
             }
         }
 
-        ToastUtil.showToast(context, email);
         return email;
+    }
+
+    public static String getDeviceName(Context context){
+        String manufacturer = Build.MANUFACTURER;
+        String model = Build.MODEL;
+
+        //ToastUtil.showToast(context, manufacturer + " " + model);
+        return manufacturer + " " + model;
     }
 }
