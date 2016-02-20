@@ -3,7 +3,6 @@ package ceg.avtechlabs.sbm.util;
 import android.content.Context;
 import android.util.Log;
 
-import com.google.android.gcm.GCMRegistrar;
 
 import java.io.OutputStream;
 import java.net.HttpURLConnection;
@@ -39,7 +38,7 @@ public class ServerUtil {
 
         for(int i=1; i<=MAX_ATTEMPTS; i++){
             post(SERVER_URL, params);
-            GCMRegistrar.setRegisteredOnServer(context, true);
+            //GCMRegistrar.setRegisteredOnServer(context, true);
             ToastUtil.showToast(context, "Device registered for push notifications");
         }
     }

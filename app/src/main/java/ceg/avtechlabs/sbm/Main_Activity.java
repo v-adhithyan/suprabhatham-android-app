@@ -13,6 +13,7 @@ import android.media.MediaPlayer;
 import android.net.Uri;
 import android.support.v7.app.ActionBarActivity;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
@@ -21,16 +22,22 @@ import android.widget.TimePicker;
 import android.widget.Toast;
 
 import com.aavilabs.db.DatabaseHandler;
+import com.buddy.sdk.Buddy;
+import com.buddy.sdk.BuddyCallback;
+import com.buddy.sdk.BuddyResult;
+import com.buddy.sdk.models.User;
 import com.google.android.gms.ads.AdRequest;
 import com.google.android.gms.ads.AdView;
-import com.rzlts.appinbox.AppInbox;
-import com.rzlts.appinbox.model.Gender;
+import com.google.gson.JsonObject;
 
+import java.util.HashMap;
 import java.util.LinkedList;
+import java.util.Map;
 
 import ceg.avtechlabs.sbm.util.FileUtil;
 import ceg.avtechlabs.sbm.util.InfoUtil;
 import ceg.avtechlabs.sbm.util.TimeUtil;
+import ceg.avtechlabs.sbm.util.ToastUtil;
 
 
 public class Main_Activity extends ActionBarActivity {
@@ -47,11 +54,25 @@ public class Main_Activity extends ActionBarActivity {
         setContentView(R.layout.activity_main);
         getSupportActionBar().setBackgroundDrawable(new ColorDrawable(getResources().getColor(R.color.actionBarColor)));
         setTitle(R.string.app_name);
-        /*AdView mAdView = (AdView) findViewById(R.id.adView);
+        AdView mAdView = (AdView) findViewById(R.id.adView);
         AdRequest adRequest = new AdRequest.Builder().build();
-        mAdView.loadAd(adRequest);*/
+        mAdView.loadAd(adRequest);
 
-        //InfoUtil.getDeviceName(this);
+        String email = InfoUtil.getEmailAddress(this);
+        String pass = InfoUtil.getDeviceName(this);
+
+        Buddy.init(getApplicationContext(), "bbbbbc.jwrpzrKlGHdfc", "091cffe2-5d16-3279-932b-546c96b45b93");
+
+        Buddy.createUser(email, pass, null, null, null, null, null, null, new BuddyCallback<User>(User.class) {
+            @Override
+            public void completed(BuddyResult<User> result) {
+                if (result.getIsSuccess()) {
+                    Log.w("user", "User created: " + result.getResult().userName);
+                }
+            }
+        });
+
+        Buddy.loginUser(email, pass, null);
     }
 
 
@@ -187,13 +208,6 @@ public class Main_Activity extends ActionBarActivity {
         {
             case TIME_DIALOG_ID:
                 final TimePickerDialog timePickerDialog =  new TimePickerDialog(this,tpl, TimeUtil.getCurrentHour() ,TimeUtil.getCurrentMinute(),false);
-                timePickerDialog.setOnCancelListener(new DialogInterface.OnCancelListener() {
-                    @Override
-                    public void onCancel(DialogInterface dialog) {
-                        dialog.dismiss();
-                    }
-                });
-                timePickerDialog.setCancelable(true);
                 return timePickerDialog;
 
         }
@@ -208,6 +222,8 @@ public class Main_Activity extends ActionBarActivity {
         public void onTimeSet(TimePicker view,int shour,int smin)
         {
             //Toast.makeText(getApplicationContext(), shour + ":" + smin, Toast.LENGTH_SHORT).show();
+            chosenHour = shour;
+            chosenMinute = smin;
             chooseTime();
         }
 
@@ -217,6 +233,9 @@ public class Main_Activity extends ActionBarActivity {
     {
         NotificationManager nm = (NotificationManager)getSystemService(Context.NOTIFICATION_SERVICE);
         nm.cancel(3592);
+
+        Buddy.logoutUser(null);
+
         super.onDestroy();
     }
 
