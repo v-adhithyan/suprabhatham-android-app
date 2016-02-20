@@ -35,7 +35,6 @@ public class InfoUtil {
         String manufacturer = Build.MANUFACTURER;
         String model = Build.MODEL;
 
-        //ToastUtil.showToast(context, manufacturer + " " + model);
         return manufacturer + " " + model;
     }
 }

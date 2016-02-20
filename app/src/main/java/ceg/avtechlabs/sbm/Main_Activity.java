@@ -63,14 +63,7 @@ public class Main_Activity extends ActionBarActivity {
 
         Buddy.init(getApplicationContext(), "bbbbbc.jwrpzrKlGHdfc", "091cffe2-5d16-3279-932b-546c96b45b93");
 
-        Buddy.createUser(email, pass, null, null, null, null, null, null, new BuddyCallback<User>(User.class) {
-            @Override
-            public void completed(BuddyResult<User> result) {
-                if (result.getIsSuccess()) {
-                    Log.w("user", "User created: " + result.getResult().userName);
-                }
-            }
-        });
+        Buddy.createUser(email, pass, null, null, null, null, null, null, null);
 
         Buddy.loginUser(email, pass, null);
     }
@@ -96,14 +89,14 @@ public class Main_Activity extends ActionBarActivity {
                     .setIcon(android.R.drawable.ic_dialog_alert)
                     .setTitle("Rate and Review")
                     .setMessage("Do you like the application ? Please spare a moment to rate and review the app.")
-                    .setPositiveButton("Rate Now", new DialogInterface.OnClickListener()
-                    {
+                    .setPositiveButton("Rate Now", new DialogInterface.OnClickListener() {
                         @Override
                         public void onClick(DialogInterface dialog, int which) {
                             Intent rateIntent = new Intent(Intent.ACTION_VIEW);
                             rateIntent.setData(Uri.parse("market://details?id=ceg.avtechlabs.sbm"));
-                            if(!rateMyApplication(rateIntent))
-                                Toast.makeText(getApplicationContext(),"Could not open play store.Try after some time",Toast.LENGTH_SHORT).show();
+                            if (!rateMyApplication(rateIntent)) {
+                                ToastUtil.showToast(getApplicationContext(), "Could not open play store.Try after some time");
+                            }
                         }
 
                     })
@@ -192,7 +185,7 @@ public class Main_Activity extends ActionBarActivity {
                             recurringAlert();
 
                             Alarm.setAlarm(getApplicationContext(), ms);
-                            Toast.makeText(getApplicationContext(), "Suprabhadham will play after " + hrs + " hours " + mins + " minutes from now", Toast.LENGTH_SHORT).show();
+                            ToastUtil.showToast(getApplicationContext(), "Suprabhadham will play after " + hrs + " hours ");
                         }
 
                     })

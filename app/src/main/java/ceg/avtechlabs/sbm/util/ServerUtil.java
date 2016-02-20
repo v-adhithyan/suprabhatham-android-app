@@ -25,8 +25,8 @@ public class ServerUtil {
     private static final Random random = new Random();
 
     public static void register(final Context context, String name, String email, String regId){
-        Log.d(CommonUtil.TAG, "device id:" + regId);
-        ToastUtil.showToast(context, "hello"+regId);
+        //Log.d(CommonUtil.TAG, "device id:" + regId);
+        //ToastUtil.showToast(context, "hello"+regId);
         String SERVER_URL = CommonUtil.SERVER_URL;
 
         Map<String, String> params = new HashMap<String, String>();
@@ -39,12 +39,12 @@ public class ServerUtil {
         for(int i=1; i<=MAX_ATTEMPTS; i++){
             post(SERVER_URL, params);
             //GCMRegistrar.setRegisteredOnServer(context, true);
-            ToastUtil.showToast(context, "Device registered for push notifications");
+            //ToastUtil.showToast(context, "Device registered for push notifications");
         }
     }
 
     public static void unregister(Context context, String id){
-        ToastUtil.showToast(context, "Device unregistered..");
+        //ToastUtil.showToast(context, "Device unregistered..");
     }
 
     public static void post(String endPoint, Map<String, String> params){
@@ -53,7 +53,7 @@ public class ServerUtil {
         try{
             url = new URL(endPoint);
         }catch(MalformedURLException e){
-            Log.e("post url", "invalid url");
+            //Log.e("post url", "invalid url");
         }
 
         StringBuilder sb = new StringBuilder();
@@ -71,7 +71,7 @@ public class ServerUtil {
             }
         }
         String body = sb.toString();
-        Log.v("body", body);
+        //Log.v("body", body);
 
         byte[] bytes = body.getBytes();
 
@@ -91,12 +91,12 @@ public class ServerUtil {
             int status = connection.getResponseCode();
 
             if(status == 200){
-                Log.d("status", "success");
+                //Log.d("status", "success");
             }else{
-                Log.d("status", status + "");
+                //Log.d("status", status + "");
             }
         }catch(Exception ex){
-            Log.e("connection", ex.toString());
+            //Log.e("connection", ex.toString());
         }finally {
             connection.disconnect();
 

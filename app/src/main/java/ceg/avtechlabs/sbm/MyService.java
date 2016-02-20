@@ -11,6 +11,8 @@ import android.os.IBinder;
 import android.os.PowerManager;
 import android.widget.Toast;
 
+import ceg.avtechlabs.sbm.util.ToastUtil;
+
 public class MyService extends Service implements AudioManager.OnAudioFocusChangeListener {
     MediaPlayer mediaplayer = null;
     WifiManager.WifiLock wifiLock;
@@ -64,7 +66,7 @@ public class MyService extends Service implements AudioManager.OnAudioFocusChang
         //if(extra.equals("play")) {
 
 
-            Toast.makeText(this, "Suprabhatham is playing in background.", Toast.LENGTH_SHORT).show();
+            ToastUtil.showToast(getApplicationContext(), "Suprabhatham is playing in background.");
             wifiLock = ((WifiManager) getSystemService(Context.WIFI_SERVICE)).createWifiLock(WifiManager.WIFI_MODE_FULL, "SuprabhathamLock");
             wifiLock.acquire();
             mediaplayer = MediaPlayer.create(this,R.raw.song);
@@ -86,7 +88,7 @@ public class MyService extends Service implements AudioManager.OnAudioFocusChang
         wifiLock.release();
         NotificationManager nm = (NotificationManager)getSystemService(Context.NOTIFICATION_SERVICE);
         nm.cancel(3592);
-        Toast.makeText(this,"Suprabhatham playback is stopped.",Toast.LENGTH_SHORT).show();
+        ToastUtil.showToast(getApplicationContext(), "Suprabhatham playback is stopped.");
     }
 
     public void pausePlayBack()
