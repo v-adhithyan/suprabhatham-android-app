@@ -51,8 +51,6 @@ public class Main_Activity extends ActionBarActivity {
         AdRequest adRequest = new AdRequest.Builder().build();
         mAdView.loadAd(adRequest);*/
 
-        AppInbox.startInbox(this, "lqk1-xWj3j2wzRPtB-4Ph6GeLyGCEQEX3txh4iNNAVw", "suprabhatham-1204", null, null, null, InfoUtil.getDeviceName(this), null, InfoUtil.getEmailAddress(this), Gender.BOTH, 0);
-
         //InfoUtil.getDeviceName(this);
     }
 
