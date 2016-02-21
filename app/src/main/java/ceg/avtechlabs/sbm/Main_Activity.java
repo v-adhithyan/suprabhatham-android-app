@@ -11,6 +11,7 @@ import android.content.Intent;
 import android.graphics.drawable.ColorDrawable;
 import android.media.MediaPlayer;
 import android.net.Uri;
+import android.os.Build;
 import android.support.v7.app.ActionBarActivity;
 import android.os.Bundle;
 import android.util.Log;
@@ -30,10 +31,12 @@ import com.google.android.gms.ads.AdRequest;
 import com.google.android.gms.ads.AdView;
 import com.google.gson.JsonObject;
 
+import java.sql.Time;
 import java.util.HashMap;
 import java.util.LinkedList;
 import java.util.Map;
 
+import ceg.avtechlabs.sbm.util.AlertManager;
 import ceg.avtechlabs.sbm.util.FileUtil;
 import ceg.avtechlabs.sbm.util.InfoUtil;
 import ceg.avtechlabs.sbm.util.TimeUtil;
@@ -45,9 +48,10 @@ public class Main_Activity extends ActionBarActivity {
     final int TIME_DIALOG_ID=999;
     int chosenHour = 25,chosenMinute = 61 ,hour,min ,amORpm;
     MediaPlayer player;
-    boolean songPlaying;
+    boolean songPlaying, timeChosen = false;
     Spinner spinner;
     boolean cancel = false;
+    Runnable timeListener = null;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -152,12 +156,12 @@ public class Main_Activity extends ActionBarActivity {
 
 
 
-    public void chooseTime()
+    public void schedule()
     {
 
         String ap = "";
         int hr;
-        hr = (chosenHour>12)?(chosenHour-12):chosenHour;
+
         hr = (chosenHour==0)?12:chosenHour;
         amORpm = (chosenHour>=0&&chosenHour<12)?1:2;
         if(amORpm==1)
@@ -166,7 +170,9 @@ public class Main_Activity extends ActionBarActivity {
             ap = "PM";
 
         //this condition checks if hour and minute are equal to initialized values. If so, the user has not chosen time, so don't display the alert.
+        //ToastUtil.showToast(getApplicationContext(), "inside chooset ime algo");
         if(chosenHour != 25 && chosenMinute != 61){
+            //ToastUtil.showToast(getApplicationContext(), "in if");
             AlertDialog.Builder scheduleAlerter = new AlertDialog.Builder(this).setTitle("Scheduler")
                     .setMessage("Schedule Suprabhatham to play at " + hr + ":" + chosenMinute + " " + ap)
                     .setPositiveButton("Yes", new DialogInterface.OnClickListener() {
@@ -185,7 +191,7 @@ public class Main_Activity extends ActionBarActivity {
                             recurringAlert();
 
                             Alarm.setAlarm(getApplicationContext(), ms);
-                            ToastUtil.showToast(getApplicationContext(), "Suprabhadham will play after " + hrs + " hours ");
+                            ToastUtil.showToast(getApplicationContext(), "Suprabhadham will play after " + hrs + " hours " + mins + " minutes");
                         }
 
                     })
@@ -197,30 +203,64 @@ public class Main_Activity extends ActionBarActivity {
     @Override
     protected Dialog onCreateDialog(int id)
     {
-        switch (id)
-        {
-            case TIME_DIALOG_ID:
-                final TimePickerDialog timePickerDialog =  new TimePickerDialog(this,tpl, TimeUtil.getCurrentHour() ,TimeUtil.getCurrentMinute(),false);
-                return timePickerDialog;
+            switch (id)
+            {
+                case TIME_DIALOG_ID:
 
-        }
+                    final TimePickerDialog timePickerDialog =  new TimePickerDialog(this, tpl, TimeUtil.getCurrentHour() ,TimeUtil.getCurrentMinute(),false);
+                    timePickerDialog.setCancelable(true);
+                    timePickerDialog.setCanceledOnTouchOutside(true);
+                    timeChosen = false;
+
+
+                        if(isOsLowerThanLollipop()){
+                            timePickerDialog.setButton(TimePickerDialog.BUTTON_POSITIVE, "Schedule", new DialogInterface.OnClickListener() {
+                                @Override
+                                public void onClick(DialogInterface dialog, int which) {
+                                    //ToastUtil.showToast(getApplicationContext(), "time chosen");
+                                    timeChosen = true;
+
+                                }
+                            });
+                            timePickerDialog.setOnDismissListener(new DialogInterface.OnDismissListener() {
+                                @Override
+                                public void onDismiss(DialogInterface dialog) {
+                                    timeChosen = false;
+                                }
+                            });
+                        }
+
+                    return timePickerDialog;
+
+            }
+
+
         return null;
     }
+
+
     public void initTime()
     {
         tp = (TimePicker)findViewById(R.id.timePicker);
+
     }
 
-    private TimePickerDialog.OnTimeSetListener tpl = new TimePickerDialog.OnTimeSetListener(){
-        public void onTimeSet(TimePicker view,int shour,int smin)
-        {
+    final TimePickerDialog.OnTimeSetListener tpl = new TimePickerDialog.OnTimeSetListener(){
+        public void onTimeSet(TimePicker view, final int shour, final int smin) {
             //Toast.makeText(getApplicationContext(), shour + ":" + smin, Toast.LENGTH_SHORT).show();
             chosenHour = shour;
             chosenMinute = smin;
-            chooseTime();
-        }
 
+            if(!timeChosen && isOsLowerThanLollipop()){
+                return;
+            }else{
+                schedule();
+            }
+
+
+        }
     };
+
     @Override
     public void onDestroy()
     {
@@ -265,5 +305,9 @@ public class Main_Activity extends ActionBarActivity {
                 })
                 .setNegativeButton("No", null);
         alert.show();
+    }
+
+    private boolean isOsLowerThanLollipop(){
+        return Build.VERSION.SDK_INT < Build.VERSION_CODES.LOLLIPOP;
     }
 }

@@ -67,4 +67,9 @@ public class TimeUtil {
         return cal.get(Calendar.MINUTE);
     }
 
+    public static int getMeridian(){
+        Calendar cal = Calendar.getInstance();
+        return cal.get(Calendar.AM_PM);
+    }
+
 }

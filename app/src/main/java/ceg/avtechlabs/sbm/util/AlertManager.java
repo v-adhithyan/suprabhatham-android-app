@@ -12,18 +12,16 @@ public class AlertManager {
 
     public static void showAlertDialog(Context context, String title, String message){
 
-        AlertDialog alertDialog = new AlertDialog.Builder(context).create();
+        AlertDialog.Builder alertDialog = new AlertDialog.Builder(context)
 
-        alertDialog.setTitle(title);
-        alertDialog.setMessage(message);
-
-        alertDialog.setButton("OK", new DialogInterface.OnClickListener() {
+        .setTitle(title)
+        .setMessage(message)
+        .setPositiveButton("OK", new DialogInterface.OnClickListener() {
             @Override
             public void onClick(DialogInterface dialog, int which) {
-
+                dialog.dismiss();
             }
         });
-
         alertDialog.show();
     }
 }

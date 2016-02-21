@@ -87,7 +87,7 @@ public class MyService extends Service implements AudioManager.OnAudioFocusChang
         mediaplayer.reset();
         wifiLock.release();
         NotificationManager nm = (NotificationManager)getSystemService(Context.NOTIFICATION_SERVICE);
-        nm.cancel(3592);
+        nm.cancelAll();
         ToastUtil.showToast(getApplicationContext(), "Suprabhatham playback is stopped.");
     }
 
