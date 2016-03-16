@@ -2,14 +2,28 @@ package ceg.avtechlabs.sbm;
 
 import android.content.Intent;
 import android.content.res.AssetManager;
+import android.graphics.Typeface;
 import android.graphics.drawable.ColorDrawable;
+import android.os.Build;
+import android.support.v4.view.ViewPager;
 import android.support.v7.app.ActionBarActivity;
 import android.os.Bundle;
+import android.util.TypedValue;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.widget.TextView;
 
+import com.nightonke.wowoviewpager.Eases.EaseType;
+import com.nightonke.wowoviewpager.ViewAnimation;
+import com.nightonke.wowoviewpager.WoWoTextViewSizeAnimation;
+import com.nightonke.wowoviewpager.WoWoUtil;
+import com.nightonke.wowoviewpager.WoWoViewPager;
+import com.nightonke.wowoviewpager.WoWoViewPagerAdapter;
+
 import java.io.InputStream;
+
+import ceg.avtechlabs.sbm.util.DisplayUtil;
+import ceg.avtechlabs.sbm.util.ToastUtil;
 
 
 public class ViewLyrics extends ActionBarActivity {
@@ -17,6 +31,12 @@ public class ViewLyrics extends ActionBarActivity {
     InputStream inputStream;
     String entireLyrics = "";
     AssetManager assetManager;
+
+    private WoWoViewPager wowo;
+    private WoWoViewPagerAdapter adapter;
+
+    private EaseType easeType = EaseType.EaseInCubic;
+    private boolean useSameEaseTypeBack = true;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -49,7 +69,20 @@ public class ViewLyrics extends ActionBarActivity {
         }
 
         //Toast.makeText(this, entireLyrics, Toast.LENGTH_LONG).show();
+
         tv.setText(entireLyrics);
+
+        if(Build.VERSION.SDK_INT >= 13){
+            int screenHeight = DisplayUtil.getScreenHeight(this);
+            int screenWidth = DisplayUtil.getScreenWidth(this);
+            ToastUtil.showToast(this, screenWidth + "*"  + screenHeight);
+
+
+            tv.setTextSize(TypedValue.COMPLEX_UNIT_PX, (float) screenWidth / 20);
+            tv.setTypeface(tv.getTypeface(),Typeface.BOLD);
+        }
+
+
     }
 
 
@@ -74,4 +107,5 @@ public class ViewLyrics extends ActionBarActivity {
 
         return super.onOptionsItemSelected(item);
     }
+
 }
