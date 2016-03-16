@@ -4,7 +4,10 @@
     package="ceg.avtechlabs.sbm"
     android:versionCode="2"
     android:versionName="1.1"
+    xmlns:tools="http://schemas.android.com/tools"
     >
+
+    <uses-sdk tools:overrideLibrary="com.nightonke.wowoviewpager"/>
 
     <uses-permission android:name="android.permission.VIBRATE" />
     <uses-permission android:name="android.permission.WAKE_LOCK" />
