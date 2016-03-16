@@ -25,5 +25,4 @@ dependencies {
     compile 'com.android.support:appcompat-v7:23.1.1'
     compile 'com.google.android.gms:play-services-ads:7.3.0'
     compile 'com.buddy:androidsdk:+'
-    compile 'com.nightonke:wowoviewpager:1.0.1'
 }

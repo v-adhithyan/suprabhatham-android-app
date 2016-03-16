@@ -7,8 +7,6 @@
     xmlns:tools="http://schemas.android.com/tools"
     >
 
-    <uses-sdk tools:overrideLibrary="com.nightonke.wowoviewpager"/>
-
     <uses-permission android:name="android.permission.VIBRATE" />
     <uses-permission android:name="android.permission.WAKE_LOCK" />
     <uses-permission android:name="android.permission.RECEIVE_BOOT_COMPLETED" />
