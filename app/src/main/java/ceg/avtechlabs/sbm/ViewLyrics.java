@@ -13,13 +13,6 @@ import android.view.Menu;
 import android.view.MenuItem;
 import android.widget.TextView;
 
-import com.nightonke.wowoviewpager.Eases.EaseType;
-import com.nightonke.wowoviewpager.ViewAnimation;
-import com.nightonke.wowoviewpager.WoWoTextViewSizeAnimation;
-import com.nightonke.wowoviewpager.WoWoUtil;
-import com.nightonke.wowoviewpager.WoWoViewPager;
-import com.nightonke.wowoviewpager.WoWoViewPagerAdapter;
-
 import java.io.InputStream;
 
 import ceg.avtechlabs.sbm.util.DisplayUtil;
@@ -32,10 +25,6 @@ public class ViewLyrics extends ActionBarActivity {
     String entireLyrics = "";
     AssetManager assetManager;
 
-    private WoWoViewPager wowo;
-    private WoWoViewPagerAdapter adapter;
-
-    private EaseType easeType = EaseType.EaseInCubic;
     private boolean useSameEaseTypeBack = true;
 
     @Override
@@ -79,7 +68,6 @@ public class ViewLyrics extends ActionBarActivity {
 
 
             tv.setTextSize(TypedValue.COMPLEX_UNIT_PX, (float) screenWidth / 20);
-            tv.setTypeface(tv.getTypeface(),Typeface.BOLD);
         }
 
 
