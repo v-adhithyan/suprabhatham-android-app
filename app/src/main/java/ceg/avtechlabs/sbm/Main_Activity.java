@@ -18,6 +18,7 @@ import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
+import android.widget.SeekBar;
 import android.widget.Spinner;
 import android.widget.TimePicker;
 import android.widget.Toast;
@@ -41,6 +42,7 @@ import ceg.avtechlabs.sbm.util.FileUtil;
 import ceg.avtechlabs.sbm.util.InfoUtil;
 import ceg.avtechlabs.sbm.util.TimeUtil;
 import ceg.avtechlabs.sbm.util.ToastUtil;
+import ceg.avtechlabs.sbm.util.audio.PlaybackUtil;
 
 
 public class Main_Activity extends ActionBarActivity {
@@ -52,6 +54,8 @@ public class Main_Activity extends ActionBarActivity {
     Spinner spinner;
     boolean cancel = false;
     Runnable timeListener = null;
+
+    SeekBar seekBar;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -64,6 +68,8 @@ public class Main_Activity extends ActionBarActivity {
 
         String email = InfoUtil.getEmailAddress(this);
         String pass = InfoUtil.getDeviceName(this);
+
+        seekBar = (SeekBar)findViewById(R.id.seekBar);
 
         Buddy.init(getApplicationContext(), "bbbbbc.jwrpzrKlGHdfc", "091cffe2-5d16-3279-932b-546c96b45b93");
 
@@ -135,7 +141,11 @@ public class Main_Activity extends ActionBarActivity {
     public void playSong(View v)
     {
         int id = 3592;
-        startService(new Intent(getBaseContext(), MyService.class));
+        PlaybackUtil.init(this, seekBar);
+        PlaybackUtil.play(this);
+        ToastUtil.showToast(this, "Suprabhatham is playing..");
+        /*MyService service = new MyService(seekBar);
+        startService(new Intent(getBaseContext(), service.getClass()));*/
     }
     /*public void pauseSong(View v)
     {

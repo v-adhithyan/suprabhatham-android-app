@@ -9,16 +9,27 @@ import android.media.MediaPlayer;
 import android.net.wifi.WifiManager;
 import android.os.IBinder;
 import android.os.PowerManager;
+import android.widget.SeekBar;
 import android.widget.Toast;
 
+import ceg.avtechlabs.sbm.threads.SeekbarProgressUpdaterThread;
 import ceg.avtechlabs.sbm.util.ToastUtil;
+import ceg.avtechlabs.sbm.util.audio.PlaybackUtil;
 
 public class MyService extends Service implements AudioManager.OnAudioFocusChangeListener {
     MediaPlayer mediaplayer = null;
     WifiManager.WifiLock wifiLock;
+    SeekbarProgressUpdaterThread progressUpdaterThread;
+    SeekBar seekBar;
+    Thread t;
 
+    public MyService(){
 
-    public MyService() {
+    }
+
+    public MyService(SeekBar seekBar) {
+        this.seekBar  = seekBar;
+        progressUpdaterThread = new SeekbarProgressUpdaterThread(this, seekBar);
     }
 
     @Override
@@ -69,8 +80,9 @@ public class MyService extends Service implements AudioManager.OnAudioFocusChang
             ToastUtil.showToast(getApplicationContext(), "Suprabhatham is playing in background.");
             wifiLock = ((WifiManager) getSystemService(Context.WIFI_SERVICE)).createWifiLock(WifiManager.WIFI_MODE_FULL, "SuprabhathamLock");
             wifiLock.acquire();
-            mediaplayer = MediaPlayer.create(this,R.raw.song);
+            mediaplayer = MediaPlayer.create(this, R.raw.song);
             mediaplayer.start();
+
         /*}
         else if(extra.equals("pause"))
         {
