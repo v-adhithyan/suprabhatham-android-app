@@ -22,7 +22,9 @@ android {
 
 dependencies {
     compile fileTree(dir: 'libs', include: ['*.jar'])
-    compile 'com.android.support:appcompat-v7:23.1.1'
-    compile 'com.google.android.gms:play-services-ads:7.3.0'
+    compile 'com.android.support:appcompat-v7:23.2.1'
+    compile 'com.google.android.gms:play-services-ads:8.4.0'
     compile 'com.buddy:androidsdk:+'
+    compile 'com.android.support:design:23.2.1'
+    compile 'com.github.Triggertrap:SeekArc:v1.1'
 }

@@ -6,6 +6,14 @@
         <item name="android:colorPrimary">#FF9800</item>
         <item name="android:colorPrimaryDark">#F57C00</item>
     </style>
+    >
+
+    <style name="AppTheme.NoActionBar">
+        <item name="windowActionBar">false</item>
+        <item name="windowNoTitle">true</item>
+        <item name="android:windowDrawsSystemBarBackgrounds">true</item>
+        <item name="android:statusBarColor">@android:color/transparent</item>
+    </style>
 
 
 </resources>

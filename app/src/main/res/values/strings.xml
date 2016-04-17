@@ -13,4 +13,5 @@
     <string name="gcm_api_key">AIzaSyBs9iG8Zio2cnbAXKpPbb5_7Paj_K0wg2g</string>
     <string name="gcm_project_id">suprabhatham-1204</string>
     <string name="gcm_push_domain">http://avsbm.xyz</string>
+    <string name="title_activity_song_player">SongPlayer</string>
 </resources>

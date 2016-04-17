@@ -1,31 +1,32 @@
-<?xml version="1.0" encoding="utf-8"?>
-<!--suppress ALL -->
+<?xml version="1.0" encoding="utf-8"?><!-- suppress ALL -->
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
     package="ceg.avtechlabs.sbm"
     android:versionCode="2"
-    android:versionName="1.1"
-    xmlns:tools="http://schemas.android.com/tools"
-    >
+    android:versionName="1.1">
 
     <uses-permission android:name="android.permission.VIBRATE" />
     <uses-permission android:name="android.permission.WAKE_LOCK" />
     <uses-permission android:name="android.permission.RECEIVE_BOOT_COMPLETED" />
-    <uses-permission android:name="android.permission.INTERNET"/>
-    <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE"/>
-    <uses-permission android:name="android.permission.GET_ACCOUNTS"/>
-    <uses-permission android:name="android.permission.GET_TASKS"/>
+    <uses-permission android:name="android.permission.INTERNET" />
+    <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
+    <uses-permission android:name="android.permission.GET_ACCOUNTS" />
+    <uses-permission android:name="android.permission.GET_TASKS" />
 
     <application
         android:allowBackup="true"
         android:icon="@mipmap/ic_launcher"
         android:label="@string/app_name"
-        android:theme="@style/AppTheme" >
-        <meta-data android:name="com.google.android.gms.version"
-            android:value="@integer/google_play_services_version"/>
+        android:theme="@style/AppTheme"
+        tools:replace="icon">
+        <meta-data
+            android:name="com.google.android.gms.version"
+            android:value="@integer/google_play_services_version" />
+
         <activity
-            android:name="ceg.avtechlabs.sbm.MainActivity"
-            android:theme="@style/Theme.AppCompat.Light.NoActionBar"
-            android:label="@string/app_name" >
+            android:name=".MainActivity"
+            android:label="@string/app_name"
+            android:theme="@style/Theme.AppCompat.Light.NoActionBar">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
@@ -34,45 +35,41 @@
         </activity>
 
         <receiver
-            android:name="ceg.avtechlabs.sbm.SongScheduler"
+            android:name=".SongScheduler"
             android:enabled="true"
-            android:exported="true" >
-        </receiver>
-
+            android:exported="true"></receiver>
 
         <service
-            android:name="ceg.avtechlabs.sbm.MyService"
+            android:name=".MyService"
             android:enabled="true"
-            android:exported="true" >
-
-        </service>
+            android:exported="true"></service>
 
         <activity
-            android:name="ceg.avtechlabs.sbm.Main_Activity"
-            android:label="@string/title_activity_main_" >
-        </activity>
+            android:name=".Main_Activity"
+            android:label="@string/title_activity_main_"></activity>
         <activity
-            android:name="ceg.avtechlabs.sbm.Lyrics"
-            android:label="@string/title_activity_lyrics" >
-        </activity>
+            android:name=".Lyrics"
+            android:label="@string/title_activity_lyrics"></activity>
         <activity
-            android:name="ceg.avtechlabs.sbm.ViewLyrics"
-            android:label="@string/title_activity_view_lyrics" >
-        </activity>
+            android:name=".ViewLyrics"
+            android:label="@string/title_activity_view_lyrics"></activity>
 
-        <receiver
-            android:name="ceg.avtechlabs.sbm.BootReceiver"
-            >
+        <receiver android:name=".BootReceiver">
             <intent-filter>
                 <action android:name="android.intent.action.BOOT_COMPLETED" />
+
                 <category android:name="android.intent.category.HOME" />
             </intent-filter>
         </receiver>
-        
-        <activity android:name="com.google.android.gms.ads.AdActivity"
+
+        <activity
+            android:name="com.google.android.gms.ads.AdActivity"
             android:configChanges="keyboard|keyboardHidden|orientation|screenLayout|uiMode|screenSize|smallestScreenSize"
             android:theme="@android:style/Theme.Translucent" />
-
+        <activity
+            android:name=".activities.SongPlayer"
+            android:label="@string/title_activity_song_player"
+            android:theme="@style/AppTheme.NoActionBar"></activity>
     </application>
 
 </manifest>

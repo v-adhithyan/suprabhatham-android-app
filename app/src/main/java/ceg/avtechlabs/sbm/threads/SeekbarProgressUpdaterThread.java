@@ -1,9 +1,11 @@
 package ceg.avtechlabs.sbm.threads;
 
 import android.content.Context;
-import android.widget.SeekBar;
 
 import ceg.avtechlabs.sbm.util.audio.PlaybackUtil;
+
+import com.triggertrap.seekarc.SeekArc;
+
 
 /**
  * Created by adhithyan-3592 on 14/04/16.
@@ -12,14 +14,14 @@ import ceg.avtechlabs.sbm.util.audio.PlaybackUtil;
 public class SeekbarProgressUpdaterThread implements Runnable{
 
     Context context;
-    SeekBar seekBar;
+    SeekArc seekArc;
     int totalDuration;
     int elapsedTime = 0;
     boolean playing;
 
-    public SeekbarProgressUpdaterThread(Context context, SeekBar seekBar){
+    public SeekbarProgressUpdaterThread(Context context, SeekArc seekArc){
         this.context = context;
-        this.seekBar = seekBar;
+        this.seekArc = seekArc;
         playing = true;
 
     }
@@ -28,14 +30,14 @@ public class SeekbarProgressUpdaterThread implements Runnable{
     public void run() {
         totalDuration = PlaybackUtil.getDurationInSeconds();
 
-        seekBar.setMax(totalDuration);
+        //seekArc.setProgressWidth(totalDuration);
 
         for(; elapsedTime <= totalDuration; elapsedTime++){
             timedWaiting();
 
             try {
                 Thread.sleep(1000);
-                seekBar.setProgress(elapsedTime);
+                seekArc.setProgress(elapsedTime);
             } catch (InterruptedException e) {
                 e.printStackTrace();
             }

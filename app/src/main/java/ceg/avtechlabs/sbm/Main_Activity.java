@@ -37,6 +37,7 @@ import java.util.HashMap;
 import java.util.LinkedList;
 import java.util.Map;
 
+import ceg.avtechlabs.sbm.activities.SongPlayer;
 import ceg.avtechlabs.sbm.util.AlertManager;
 import ceg.avtechlabs.sbm.util.FileUtil;
 import ceg.avtechlabs.sbm.util.InfoUtil;
@@ -68,8 +69,6 @@ public class Main_Activity extends ActionBarActivity {
 
         String email = InfoUtil.getEmailAddress(this);
         String pass = InfoUtil.getDeviceName(this);
-
-        seekBar = (SeekBar)findViewById(R.id.seekBar);
 
         Buddy.init(getApplicationContext(), "bbbbbc.jwrpzrKlGHdfc", "091cffe2-5d16-3279-932b-546c96b45b93");
 
@@ -141,11 +140,11 @@ public class Main_Activity extends ActionBarActivity {
     public void playSong(View v)
     {
         int id = 3592;
-        PlaybackUtil.init(this, seekBar);
-        PlaybackUtil.play(this);
-        ToastUtil.showToast(this, "Suprabhatham is playing..");
         /*MyService service = new MyService(seekBar);
         startService(new Intent(getBaseContext(), service.getClass()));*/
+
+        Intent intent = new Intent(Main_Activity.this, SongPlayer.class);
+        startActivity(intent);
     }
     /*public void pauseSong(View v)
     {

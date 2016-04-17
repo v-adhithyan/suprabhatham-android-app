@@ -27,10 +27,7 @@ public class MyService extends Service implements AudioManager.OnAudioFocusChang
 
     }
 
-    public MyService(SeekBar seekBar) {
-        this.seekBar  = seekBar;
-        progressUpdaterThread = new SeekbarProgressUpdaterThread(this, seekBar);
-    }
+
 
     @Override
     public IBinder onBind(Intent intent) {
