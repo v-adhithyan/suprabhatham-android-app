@@ -23,7 +23,7 @@ import ceg.avtechlabs.sbm.util.audio.PlaybackUtil;
 
 public class SongPlayer extends AppCompatActivity {
 
-    ImageButton playBackButton;
+    FloatingActionButton playBackButton;
     SeekArc seekArc;
     MediaPlayer player;
     Thread t;
@@ -46,7 +46,7 @@ public class SongPlayer extends AppCompatActivity {
 
         setTitle("");
 
-        playBackButton = (ImageButton)findViewById(R.id.playBackButton);
+        playBackButton = (FloatingActionButton)findViewById(R.id.playBackButton);
         seekArc = (SeekArc)findViewById(R.id.seekArc);
         textViewDuration = (TextView)findViewById(R.id.textViewDuration);
         textViewDuration.setText("00:00");
@@ -102,12 +102,16 @@ public class SongPlayer extends AppCompatActivity {
             }
     }
 
-    public void update(final int i){
+    public void updateView(final int i){
         runOnUiThread(new Runnable() {
             @Override
             public void run() {
                 seekArc.setProgress(i);
                 updateDuration(i);
+
+                if(i == 1232){
+
+                }
             }
         });
     }
@@ -132,7 +136,7 @@ public class SongPlayer extends AppCompatActivity {
                     e.printStackTrace();
                 }
 
-                update(i);
+                updateView(i);
             }
         }
     }

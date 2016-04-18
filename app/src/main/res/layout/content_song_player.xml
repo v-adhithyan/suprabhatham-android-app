@@ -34,15 +34,7 @@
         ads:adUnitId="@string/banner_ad_unit_id">
     </com.google.android.gms.ads.AdView>
 
-    <ImageButton
-        android:layout_width="75dp"
-        android:layout_height="75dp"
-        android:id="@+id/playBackButton"
-        android:layout_centerVertical="true"
-        android:layout_centerHorizontal="true"
-        android:src="@android:drawable/ic_media_play"
-        android:background="#ffffff"
-        android:onClick="controlPlayback"/>
+
 
     <TextView
         android:layout_width="wrap_content"
@@ -54,6 +46,28 @@
         android:layout_alignParentTop="true"
         android:layout_centerHorizontal="true"
         android:layout_marginTop="60dp" />
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textAppearance="?android:attr/textAppearanceMedium"
+        android:text="Suprabhatham"
+        android:textAllCaps="true"
+        android:textColor="#ffffff"
+        android:id="@+id/textViewSongName"
+        android:layout_centerVertical="true"
+        android:layout_centerHorizontal="true" />
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textAppearance="?android:attr/textAppearanceMedium"
+        android:text="(20 minutes 32 seconds)"
+        android:textColor="#ffffff"
+        android:id="@+id/textViewTotalDuration"
+        android:layout_alignParentTop="true"
+        android:layout_centerHorizontal="true"
+        android:gravity="center"/>
 
 
 </RelativeLayout>
