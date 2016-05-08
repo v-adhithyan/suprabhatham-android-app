@@ -2,33 +2,41 @@ package ceg.avtechlabs.sbm.listeners;
 
 import android.widget.SeekBar;
 
+import com.triggertrap.seekarc.SeekArc;
+
+import ceg.avtechlabs.sbm.common.CommonUtil;
+
 /**
  * Created by adhithyan-3592 on 14/04/16.
  */
 
 public class SeekbarListener{
 
-    SeekBar seekBar;
+    SeekArc seekBar;
 
-    public SeekbarListener(SeekBar seekBar){
+    public SeekbarListener(SeekArc seekBar){
         this.seekBar = seekBar;
 
-        this.seekBar.setOnSeekBarChangeListener(new SeekBar.OnSeekBarChangeListener() {
+        this.seekBar.setOnSeekArcChangeListener(new SeekArc.OnSeekArcChangeListener() {
             @Override
-            public void onProgressChanged(SeekBar seekBar, int progress, boolean fromUser) {
+            public void onProgressChanged(SeekArc seekArc, int i, boolean b) {
 
+                if(CommonUtil.isSeekBarChanged()){
+                    CommonUtil.setCurrentProgess(i);
+                }
             }
 
             @Override
-            public void onStartTrackingTouch(SeekBar seekBar) {
-
+            public void onStartTrackingTouch(SeekArc seekArc) {
+                CommonUtil.setSeekBarChanged();
             }
 
             @Override
-            public void onStopTrackingTouch(SeekBar seekBar) {
+            public void onStopTrackingTouch(SeekArc seekArc) {
 
             }
         });
+
     }
 
 }

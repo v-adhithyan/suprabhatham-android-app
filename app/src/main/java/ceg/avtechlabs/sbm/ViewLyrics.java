@@ -67,7 +67,7 @@ public class ViewLyrics extends ActionBarActivity {
             //ToastUtil.showToast(this, screenWidth + "*"  + screenHeight);
 
 
-            tv.setTextSize(TypedValue.COMPLEX_UNIT_PX, (float) screenWidth / 20);
+            tv.setTextSize(TypedValue.COMPLEX_UNIT_PX, (float) screenWidth / 25);
         }
 
 
