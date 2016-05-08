@@ -1,5 +1,7 @@
 package ceg.avtechlabs.sbm.activities;
 
+import android.app.AlertDialog;
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.graphics.drawable.ColorDrawable;
 import android.media.MediaPlayer;
@@ -86,11 +88,28 @@ public class SongPlayer extends AppCompatActivity {
 
         if(player != null){
             if(player.isPlaying()){
-                player.stop();
+                AlertDialog.Builder exitAlert =  new AlertDialog.Builder(this)
+                        .setIcon(android.R.drawable.ic_dialog_alert)
+                        .setTitle("Back pressed !")
+                        .setMessage("Do you want to go back to previous screen? Song playback will be stopped.")
+                        .setPositiveButton("Yes, No problem.", new DialogInterface.OnClickListener()
+                        {
+                            @Override
+                            public void onClick(DialogInterface dialog, int which) {
+                                player.stop();
+                                finish();
+                            }
+
+                        })
+                        .setNegativeButton("No, Please keep playing.", null);
+
+                exitAlert.show();
+
             }
+        }else{
+            finish();
         }
 
-        finish();
     }
 
     public void controlPlayback(View v){
@@ -129,7 +148,7 @@ public class SongPlayer extends AppCompatActivity {
                     t = null;
                 }
 
-                ToastUtil.showToast(getApplicationContext(), i + "");
+                //ToastUtil.showToast(getApplicationContext(), i + "");
             }
         });
     }
@@ -190,4 +209,7 @@ public class SongPlayer extends AppCompatActivity {
         textViewDuration.setText(preMin + min + ":" +  preSec + sec);
 
     }
+
+
+
 }
