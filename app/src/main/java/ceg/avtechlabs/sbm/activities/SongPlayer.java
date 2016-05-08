@@ -105,9 +105,10 @@ public class SongPlayer extends AppCompatActivity {
 
                 exitAlert.show();
 
+            }else{
+                finish();
             }
-        }else{
-            finish();
+
         }
 
     }
