@@ -38,6 +38,7 @@ import java.util.LinkedList;
 import java.util.Map;
 
 import ceg.avtechlabs.sbm.activities.SongPlayer;
+import ceg.avtechlabs.sbm.tracker.MixPanelUtil;
 import ceg.avtechlabs.sbm.util.AlertManager;
 import ceg.avtechlabs.sbm.util.FileUtil;
 import ceg.avtechlabs.sbm.util.InfoUtil;
@@ -57,6 +58,8 @@ public class Main_Activity extends ActionBarActivity {
     Runnable timeListener = null;
 
     SeekBar seekBar;
+
+    MixPanelUtil mixPanelUtil;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -70,11 +73,8 @@ public class Main_Activity extends ActionBarActivity {
         String email = InfoUtil.getEmailAddress(this);
         String pass = InfoUtil.getDeviceName(this);
 
-        Buddy.init(getApplicationContext(), "bbbbbc.jwrpzrKlGHdfc", "091cffe2-5d16-3279-932b-546c96b45b93");
-
-        Buddy.createUser(email, pass, null, null, null, null, null, null, null);
-
-        Buddy.loginUser(email, pass, null);
+        mixPanelUtil = MixPanelUtil.getInstance(this);
+        mixPanelUtil.trackEvent("Main Activity");
     }
 
 
@@ -139,12 +139,14 @@ public class Main_Activity extends ActionBarActivity {
 
     public void playSong(View v)
     {
+        mixPanelUtil.trackEvent("Play Song");
         int id = 3592;
         /*MyService service = new MyService(seekBar);
         startService(new Intent(getBaseContext(), service.getClass()));*/
 
         Intent intent = new Intent(Main_Activity.this, SongPlayer.class);
         startActivity(intent);
+
     }
     /*public void pauseSong(View v)
     {
@@ -160,7 +162,7 @@ public class Main_Activity extends ActionBarActivity {
     {
         initTime();
         showDialog(TIME_DIALOG_ID);
-
+        mixPanelUtil.trackEvent("Scheduler");
     }
 
 
@@ -201,6 +203,8 @@ public class Main_Activity extends ActionBarActivity {
 
                             Alarm.setAlarm(getApplicationContext(), ms);
                             ToastUtil.showToast(getApplicationContext(), "Suprabhadham will play after " + hrs + " hours " + mins + " minutes");
+
+                            mixPanelUtil.trackEvent("Scheduler Ok");
                         }
 
                     })
@@ -276,15 +280,19 @@ public class Main_Activity extends ActionBarActivity {
         NotificationManager nm = (NotificationManager)getSystemService(Context.NOTIFICATION_SERVICE);
         nm.cancel(3592);
 
-        Buddy.logoutUser(null);
+        //Buddy.logoutUser(null);
 
         super.onDestroy();
     }
 
     public void viewLyrics(View v)
     {
-        Intent intent = new Intent(getApplicationContext(),Lyrics.class);
+
+        mixPanelUtil.trackEvent("View Lyrics");
+        Intent intent = new Intent(getApplicationContext(), Lyrics.class);
         startActivity(intent);
+
+
     }
 
 
@@ -292,6 +300,7 @@ public class Main_Activity extends ActionBarActivity {
     {
         try
         {
+            mixPanelUtil.trackEvent("Rate App");
             startActivity(intent);
             return true;
         }
@@ -303,6 +312,7 @@ public class Main_Activity extends ActionBarActivity {
     }
 
     private void recurringAlert(){
+
         AlertDialog.Builder alert = new AlertDialog.Builder(this).setTitle("Confirmation")
                 .setMessage("Do you want to play Suprabhatham at scheduled time everyday?")
                 .setPositiveButton("Yes", new DialogInterface.OnClickListener() {
@@ -310,6 +320,8 @@ public class Main_Activity extends ActionBarActivity {
                     public void onClick(DialogInterface dialog, int which) {
                         DatabaseHandler db = new DatabaseHandler(getApplicationContext());
                         db.insert(DatabaseHandler.RECURRING_TABLE, System.currentTimeMillis() + "");
+
+                        mixPanelUtil.trackEvent("Recurring Alert:Yes");
                     }
                 })
                 .setNegativeButton("No", null);
