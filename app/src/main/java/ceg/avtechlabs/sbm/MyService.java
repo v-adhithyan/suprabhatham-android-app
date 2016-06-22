@@ -13,6 +13,7 @@ import android.widget.SeekBar;
 import android.widget.Toast;
 
 import ceg.avtechlabs.sbm.threads.SeekbarProgressUpdaterThread;
+import ceg.avtechlabs.sbm.tracker.MixPanelUtil;
 import ceg.avtechlabs.sbm.util.ToastUtil;
 import ceg.avtechlabs.sbm.util.audio.PlaybackUtil;
 
@@ -80,7 +81,9 @@ public class MyService extends Service implements AudioManager.OnAudioFocusChang
             mediaplayer = MediaPlayer.create(this, R.raw.song);
             mediaplayer.start();
 
+            MixPanelUtil.getInstance(getApplicationContext()).trackEvent("ALARM");
         /*}
+
         else if(extra.equals("pause"))
         {
             if(mediaplayer.isPlaying())
