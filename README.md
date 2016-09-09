@@ -16,6 +16,11 @@ If you love Suprabhatham, then this is your application. Listen to Suprabhatham 
 
 User email address and device name are collected to know the usage stats. The information collected will be used to improve the app and will not be shared with third parties.
 
+# Todo
+
+- [ ] Cleanup Code. 
+- [ ] Reorganize packages. 
+- [ ] Assign proper names to java files. Be a pro !
 # License
 
 This project is maintained under MIT license.
