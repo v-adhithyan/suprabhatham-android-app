@@ -1,14 +1,14 @@
 apply plugin: 'com.android.application'
 
 android {
-    compileSdkVersion 23
+    compileSdkVersion 24
     buildToolsVersion "23.0.2"
     defaultConfig {
         applicationId 'ceg.avtechlabs.sbm'
         minSdkVersion 9
-        targetSdkVersion 21
-        versionCode 5
-        versionName "2.1.1"
+        targetSdkVersion 24
+        versionCode 6
+        versionName "2.1.2"
     }
     buildTypes {
         release {
@@ -22,12 +22,12 @@ android {
 
 dependencies {
     compile fileTree(dir: 'libs', include: ['*.jar'])
-    compile 'com.android.support:appcompat-v7:23.2.1'
-    compile 'com.google.android.gms:play-services-ads:8.4.0'
+    compile 'com.android.support:appcompat-v7:24.+'
+    compile 'com.google.android.gms:play-services-ads:9.4.0'
     compile 'com.buddy:androidsdk:+'
-    compile 'com.android.support:design:23.2.1'
+    compile 'com.android.support:design:24.+'
     compile 'com.github.Triggertrap:SeekArc:v1.1'
     compile "com.mixpanel.android:mixpanel-android:4.+"
-    compile "com.google.android.gms:play-services:8.4.0"
+    compile "com.google.android.gms:play-services:9.4.0"
     compile group: 'org.json', name: 'json', version: '20090211'
 }

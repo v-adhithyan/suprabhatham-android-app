@@ -24,7 +24,7 @@
             android:value="@integer/google_play_services_version" />
 
         <activity
-            android:name=".activities.SplashScreenActivity"
+            android:name="ceg.avtechlabs.sbm.activities.SplashScreenActivity"
             android:label="@string/app_name"
             android:theme="@style/Theme.AppCompat.Light.NoActionBar">
             <intent-filter>
