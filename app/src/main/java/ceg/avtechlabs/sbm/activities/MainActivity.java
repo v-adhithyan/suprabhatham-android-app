@@ -1,4 +1,4 @@
-package ceg.avtechlabs.sbm;
+package ceg.avtechlabs.sbm.activities;
 
 import android.app.AlertDialog;
 import android.app.Dialog;
@@ -12,42 +12,32 @@ import android.graphics.drawable.ColorDrawable;
 import android.media.MediaPlayer;
 import android.net.Uri;
 import android.os.Build;
-import android.support.v7.app.ActionBarActivity;
 import android.os.Bundle;
-import android.util.Log;
+import android.support.v7.app.ActionBarActivity;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.SeekBar;
 import android.widget.Spinner;
 import android.widget.TimePicker;
-import android.widget.Toast;
 
-import com.aavilabs.db.DatabaseHandler;
-import com.buddy.sdk.Buddy;
-import com.buddy.sdk.BuddyCallback;
-import com.buddy.sdk.BuddyResult;
-import com.buddy.sdk.models.User;
+import ceg.avtechlabs.sbm.db.DatabaseHandler;
 import com.google.android.gms.ads.AdRequest;
 import com.google.android.gms.ads.AdView;
-import com.google.gson.JsonObject;
 
-import java.sql.Time;
-import java.util.HashMap;
 import java.util.LinkedList;
-import java.util.Map;
 
-import ceg.avtechlabs.sbm.activities.SongPlayer;
+import ceg.avtechlabs.sbm.util.Alarm;
+import ceg.avtechlabs.sbm.services.AudioService;
+import ceg.avtechlabs.sbm.R;
 import ceg.avtechlabs.sbm.tracker.MixPanelUtil;
-import ceg.avtechlabs.sbm.util.AlertManager;
 import ceg.avtechlabs.sbm.util.FileUtil;
 import ceg.avtechlabs.sbm.util.InfoUtil;
 import ceg.avtechlabs.sbm.util.TimeUtil;
 import ceg.avtechlabs.sbm.util.ToastUtil;
-import ceg.avtechlabs.sbm.util.audio.PlaybackUtil;
 
 
-public class Main_Activity extends ActionBarActivity {
+public class MainActivity extends ActionBarActivity {
     TimePicker tp;
     final int TIME_DIALOG_ID=999;
     int chosenHour = 25,chosenMinute = 61 ,hour,min ,amORpm;
@@ -144,7 +134,7 @@ public class Main_Activity extends ActionBarActivity {
         /*MyService service = new MyService(seekBar);
         startService(new Intent(getBaseContext(), service.getClass()));*/
 
-        Intent intent = new Intent(Main_Activity.this, SongPlayer.class);
+        Intent intent = new Intent(MainActivity.this, SongPlayerActivity.class);
         startActivity(intent);
 
     }
@@ -156,7 +146,7 @@ public class Main_Activity extends ActionBarActivity {
     }*/
     public void stopSong(View v)
     {
-        stopService(new Intent(getBaseContext(), MyService.class));
+        stopService(new Intent(getBaseContext(), AudioService.class));
     }
     public void startScheduler(View v)
     {
@@ -289,7 +279,7 @@ public class Main_Activity extends ActionBarActivity {
     {
 
         mixPanelUtil.trackEvent("View Lyrics");
-        Intent intent = new Intent(getApplicationContext(), Lyrics.class);
+        Intent intent = new Intent(getApplicationContext(), LyricsActivity.class);
         startActivity(intent);
 
 

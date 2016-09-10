@@ -24,7 +24,7 @@
             android:value="@integer/google_play_services_version" />
 
         <activity
-            android:name=".MainActivity"
+            android:name=".activities.SplashScreenActivity"
             android:label="@string/app_name"
             android:theme="@style/Theme.AppCompat.Light.NoActionBar">
             <intent-filter>
@@ -35,26 +35,26 @@
         </activity>
 
         <receiver
-            android:name=".SongScheduler"
+            android:name=".util.SongScheduler"
             android:enabled="true"
             android:exported="true"></receiver>
 
         <service
-            android:name=".MyService"
+            android:name=".services.AudioService"
             android:enabled="true"
             android:exported="true"></service>
 
         <activity
-            android:name=".Main_Activity"
+            android:name=".activities.MainActivity"
             android:label="@string/title_activity_main_"></activity>
         <activity
-            android:name=".Lyrics"
+            android:name=".activities.LyricsActivity"
             android:label="@string/title_activity_lyrics"></activity>
         <activity
-            android:name=".ViewLyrics"
+            android:name=".activities.ViewLyricsActivity"
             android:label="@string/title_activity_view_lyrics"></activity>
 
-        <receiver android:name=".BootReceiver">
+        <receiver android:name=".services.BootReceiverService">
             <intent-filter>
                 <action android:name="android.intent.action.BOOT_COMPLETED" />
 
@@ -67,7 +67,7 @@
             android:configChanges="keyboard|keyboardHidden|orientation|screenLayout|uiMode|screenSize|smallestScreenSize"
             android:theme="@android:style/Theme.Translucent" />
         <activity
-            android:name=".activities.SongPlayer"
+            android:name=".activities.SongPlayerActivity"
             android:label="@string/title_activity_song_player"
             android:theme="@style/AppTheme.NoActionBar"></activity>
     </application>

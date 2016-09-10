@@ -1,11 +1,9 @@
-package ceg.avtechlabs.sbm;
+package ceg.avtechlabs.sbm.activities;
 
 import android.content.Intent;
 import android.content.res.AssetManager;
-import android.graphics.Typeface;
 import android.graphics.drawable.ColorDrawable;
 import android.os.Build;
-import android.support.v4.view.ViewPager;
 import android.support.v7.app.ActionBarActivity;
 import android.os.Bundle;
 import android.util.TypedValue;
@@ -15,11 +13,11 @@ import android.widget.TextView;
 
 import java.io.InputStream;
 
+import ceg.avtechlabs.sbm.R;
 import ceg.avtechlabs.sbm.util.DisplayUtil;
-import ceg.avtechlabs.sbm.util.ToastUtil;
 
 
-public class ViewLyrics extends ActionBarActivity {
+public class ViewLyricsActivity extends ActionBarActivity {
     TextView tv;
     InputStream inputStream;
     String entireLyrics = "";
@@ -32,7 +30,7 @@ public class ViewLyrics extends ActionBarActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_lyrics);
         Intent intent =  getIntent();
-        String fname = intent.getStringExtra(Lyrics.FILE_NAME);
+        String fname = intent.getStringExtra(LyricsActivity.FILE_NAME);
         tv = (TextView)findViewById(R.id.textViewLyrics);
         getSupportActionBar().setBackgroundDrawable(new ColorDrawable(getResources().getColor(R.color.actionBarColor)));
         assetManager = getAssets();

@@ -1,4 +1,4 @@
-package ceg.avtechlabs.sbm;
+package ceg.avtechlabs.sbm.util;
 
 import android.app.NotificationManager;
 import android.app.PendingIntent;
@@ -6,6 +6,8 @@ import android.content.Context;
 import android.support.v4.app.NotificationCompat;
 
 import java.util.HashMap;
+
+import ceg.avtechlabs.sbm.R;
 
 /**
  * Created by adhithyan-3592 on 01/02/16.

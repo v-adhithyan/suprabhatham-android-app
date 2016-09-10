@@ -1,4 +1,4 @@
-package com.aavilabs.db;
+package ceg.avtechlabs.sbm.db;
 
 import android.content.ContentValues;
 import android.content.Context;

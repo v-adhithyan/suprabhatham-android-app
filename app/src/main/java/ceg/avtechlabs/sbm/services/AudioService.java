@@ -1,4 +1,4 @@
-package ceg.avtechlabs.sbm;
+package ceg.avtechlabs.sbm.services;
 
 import android.app.NotificationManager;
 import android.app.Service;
@@ -12,19 +12,20 @@ import android.os.PowerManager;
 import android.widget.SeekBar;
 import android.widget.Toast;
 
+import ceg.avtechlabs.sbm.R;
 import ceg.avtechlabs.sbm.threads.SeekbarProgressUpdaterThread;
 import ceg.avtechlabs.sbm.tracker.MixPanelUtil;
 import ceg.avtechlabs.sbm.util.ToastUtil;
 import ceg.avtechlabs.sbm.util.audio.PlaybackUtil;
 
-public class MyService extends Service implements AudioManager.OnAudioFocusChangeListener {
+public class AudioService extends Service implements AudioManager.OnAudioFocusChangeListener {
     MediaPlayer mediaplayer = null;
     WifiManager.WifiLock wifiLock;
     SeekbarProgressUpdaterThread progressUpdaterThread;
     SeekBar seekBar;
     Thread t;
 
-    public MyService(){
+    public AudioService(){
 
     }
 
@@ -43,7 +44,7 @@ public class MyService extends Service implements AudioManager.OnAudioFocusChang
             case AudioManager.AUDIOFOCUS_GAIN:
                 if(mediaplayer == null)
                 {
-                    mediaplayer = MediaPlayer.create(this,R.raw.song);
+                    mediaplayer = MediaPlayer.create(this, R.raw.song);
                     mediaplayer.setWakeMode(this,PowerManager.PARTIAL_WAKE_LOCK);
                     mediaplayer.start();
                 }

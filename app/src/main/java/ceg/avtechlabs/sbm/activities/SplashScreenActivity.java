@@ -1,26 +1,18 @@
-package ceg.avtechlabs.sbm;
+package ceg.avtechlabs.sbm.activities;
 
-import android.app.ProgressDialog;
 import android.content.Intent;
-import android.graphics.drawable.ColorDrawable;
+import android.os.Bundle;
 import android.os.Handler;
 import android.support.v7.app.ActionBarActivity;
-import android.os.Bundle;
-import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.Window;
 import android.view.WindowManager;
 
-import com.aavilabs.db.DatabaseHandler;
-
-import java.util.Date;
-import java.util.TreeMap;
-
-import static ceg.avtechlabs.sbm.R.string.app_name;
+import ceg.avtechlabs.sbm.R;
 
 
-public class MainActivity extends ActionBarActivity {
+public class SplashScreenActivity extends ActionBarActivity {
 
 
     private static int SPLASH_TIME_OUT = 2000;
@@ -40,7 +32,7 @@ public class MainActivity extends ActionBarActivity {
             @Override
             public void run()
             {
-                Intent i = new Intent(MainActivity.this,Main_Activity.class);
+                Intent i = new Intent(SplashScreenActivity.this,MainActivity.class);
                 startActivity(i);
                 finish();
             }

@@ -1,15 +1,11 @@
-package ceg.avtechlabs.sbm;
+package ceg.avtechlabs.sbm.util;
 
 import android.app.AlarmManager;
 import android.app.PendingIntent;
 import android.content.Context;
 import android.content.Intent;
-import android.util.Log;
-import android.widget.Toast;
 
-import com.aavilabs.db.DatabaseHandler;
-
-import java.util.List;
+import ceg.avtechlabs.sbm.db.DatabaseHandler;
 
 /**
  * Created by adhithyan-3592 on 31/01/16.

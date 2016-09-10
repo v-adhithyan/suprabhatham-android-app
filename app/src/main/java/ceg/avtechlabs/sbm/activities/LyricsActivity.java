@@ -1,4 +1,4 @@
-package ceg.avtechlabs.sbm;
+package ceg.avtechlabs.sbm.activities;
 
 import android.content.Intent;
 import android.graphics.drawable.ColorDrawable;
@@ -8,10 +8,11 @@ import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
 
+import ceg.avtechlabs.sbm.R;
 import ceg.avtechlabs.sbm.tracker.MixPanelUtil;
 
 
-public class Lyrics extends ActionBarActivity {
+public class LyricsActivity extends ActionBarActivity {
 
    public final static String FILE_NAME="file";
     MixPanelUtil mixPanelUtil;
@@ -53,7 +54,7 @@ public class Lyrics extends ActionBarActivity {
     public void showTamilLyrics(View v)
     {
         mixPanelUtil.trackEvent("Tamil Lyrics");
-        Intent intent = new Intent(this,ViewLyrics.class);
+        Intent intent = new Intent(this,ViewLyricsActivity.class);
         intent.putExtra(FILE_NAME,"tamil.txt");
         startActivity(intent);
     }
@@ -61,7 +62,7 @@ public class Lyrics extends ActionBarActivity {
     public void showEnglishLyrics(View v)
     {
         mixPanelUtil.trackEvent("English Lyrics");
-        Intent intent = new Intent(this,ViewLyrics.class);
+        Intent intent = new Intent(this,ViewLyricsActivity.class);
         intent.putExtra(FILE_NAME,"english.txt");
         startActivity(intent);
     }
@@ -69,7 +70,7 @@ public class Lyrics extends ActionBarActivity {
     public void showTeluguLyrics(View v)
     {
         mixPanelUtil.trackEvent("Telugu Lyrics");
-        Intent intent = new Intent(this,ViewLyrics.class);
+        Intent intent = new Intent(this,ViewLyricsActivity.class);
         intent.putExtra(FILE_NAME,"telugu.txt");
         startActivity(intent);
     }
@@ -77,7 +78,7 @@ public class Lyrics extends ActionBarActivity {
     public void showKannadaLyrics(View v)
     {
         mixPanelUtil.trackEvent("Kannada Lyrics");
-        Intent intent = new Intent(this,ViewLyrics.class);
+        Intent intent = new Intent(this,ViewLyricsActivity.class);
         intent.putExtra(FILE_NAME,"kannada.txt");
         startActivity(intent);
     }

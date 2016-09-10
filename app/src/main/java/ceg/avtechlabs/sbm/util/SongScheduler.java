@@ -1,4 +1,4 @@
-package ceg.avtechlabs.sbm;
+package ceg.avtechlabs.sbm.util;
 
 import android.app.Notification;
 import android.app.NotificationManager;
@@ -7,11 +7,11 @@ import android.content.BroadcastReceiver;
 import android.content.Context;
 import android.content.Intent;
 import android.os.Vibrator;
-import android.support.v4.app.NotificationCompat;
 
 import java.util.HashMap;
 
-import ceg.avtechlabs.sbm.util.FileUtil;
+import ceg.avtechlabs.sbm.services.AudioService;
+import ceg.avtechlabs.sbm.activities.SplashScreenActivity;
 
 public class SongScheduler extends BroadcastReceiver {
     NotificationManager manager;
@@ -37,16 +37,16 @@ public class SongScheduler extends BroadcastReceiver {
         Vibrator vibrate = (Vibrator)context.getSystemService(Context.VIBRATOR_SERVICE);
         vibrate.vibrate(2500);
 
-        PendingIntent pi = PendingIntent.getActivity(context,0,new Intent(context,MainActivity.class),0);
+        PendingIntent pi = PendingIntent.getActivity(context,0,new Intent(context,SplashScreenActivity.class),0);
 
         HashMap<String, Object> arguments = new HashMap<String, Object>();
         arguments.put("title", title);
         arguments.put("message", message);
         arguments.put("intent", pi);
 
-        ceg.avtechlabs.sbm.Notification.showNotification(context, arguments);
+        ceg.avtechlabs.sbm.util.Notification.showNotification(context, arguments);
 
-        context.startService(new Intent(context, MyService.class));
+        context.startService(new Intent(context, AudioService.class));
     }
 
 

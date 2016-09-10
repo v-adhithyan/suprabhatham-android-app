@@ -12,7 +12,7 @@
     android:paddingTop="@dimen/activity_vertical_margin"
     android:background="@color/actionBarColor"
     app:layout_behavior="@string/appbar_scrolling_view_behavior"
-    tools:context="ceg.avtechlabs.sbm.activities.SongPlayer"
+    tools:context=".activities.SongPlayerActivity"
     tools:showIn="@layout/activity_song_player">
 
     <com.triggertrap.seekarc.SeekArc

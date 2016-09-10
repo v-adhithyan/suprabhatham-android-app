@@ -3,31 +3,26 @@ package ceg.avtechlabs.sbm.activities;
 import android.app.AlertDialog;
 import android.content.DialogInterface;
 import android.content.Intent;
-import android.graphics.drawable.ColorDrawable;
 import android.media.MediaPlayer;
 import android.os.Bundle;
 import android.support.design.widget.FloatingActionButton;
-import android.support.design.widget.Snackbar;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 import android.view.View;
 import android.view.Window;
 import android.view.WindowManager;
-import android.widget.ImageButton;
 import android.widget.TextView;
 
 import com.google.android.gms.ads.AdRequest;
 import com.google.android.gms.ads.AdView;
 import com.triggertrap.seekarc.SeekArc;
 
-import ceg.avtechlabs.sbm.Main_Activity;
 import ceg.avtechlabs.sbm.R;
 import ceg.avtechlabs.sbm.common.CommonUtil;
 import ceg.avtechlabs.sbm.listeners.SeekbarListener;
-import ceg.avtechlabs.sbm.util.ToastUtil;
 import ceg.avtechlabs.sbm.util.audio.PlaybackUtil;
 
-public class SongPlayer extends AppCompatActivity {
+public class SongPlayerActivity extends AppCompatActivity {
 
     FloatingActionButton playBackButton;
     SeekArc seekArc;
@@ -79,7 +74,7 @@ public class SongPlayer extends AppCompatActivity {
     }
 
     public void exit(View v){
-        Intent intent = new Intent(SongPlayer.this, Main_Activity.class);
+        Intent intent = new Intent(SongPlayerActivity.this, MainActivity.class);
         startActivity(intent);
     }
 

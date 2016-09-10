@@ -1,4 +1,4 @@
-package com.avtechlabs.push.notifications;
+package ceg.avtechlabs.sbm.util;
 
 import android.content.Context;
 import android.net.ConnectivityManager;

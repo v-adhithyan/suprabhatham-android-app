@@ -1,21 +1,15 @@
-package ceg.avtechlabs.sbm;
+package ceg.avtechlabs.sbm.services;
 
-import android.app.AlarmManager;
-import android.app.PendingIntent;
 import android.content.BroadcastReceiver;
 import android.content.Context;
 import android.content.Intent;
-import android.widget.Toast;
 
-import java.io.FileInputStream;
-import java.util.Calendar;
-import java.util.LinkedList;
-
+import ceg.avtechlabs.sbm.util.Alarm;
 import ceg.avtechlabs.sbm.util.FileUtil;
 import ceg.avtechlabs.sbm.util.TimeUtil;
 
-public class BootReceiver extends BroadcastReceiver {
-    public BootReceiver() {
+public class BootReceiverService extends BroadcastReceiver {
+    public BootReceiverService() {
     }
 
     @Override
