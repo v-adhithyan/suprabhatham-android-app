@@ -28,7 +28,7 @@ public class Notification {
 
         int randomNumber = (int)Math.random();
 
-        builder.setSmallIcon(R.drawable.splash);
+        builder.setSmallIcon(R.drawable.ic_small_icon);
         builder.setContentTitle(title);
         builder.setContentText(message);
 
