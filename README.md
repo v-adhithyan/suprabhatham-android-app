@@ -19,8 +19,10 @@ User email address and device name are collected to know the usage stats. The in
 # Todo
 
 - [ ] Cleanup Code. 
-- [ ] Reorganize packages. 
-- [ ] Assign proper names to java files. Be a pro !
+- [X] Reorganize packages. 
+- [X] Assign proper names to java files. Be a pro !
+- [ ] Kill playback service from notification bar or from app.
+
 # License
 
 This project is maintained under MIT license.
