@@ -80,14 +80,18 @@ public class SongPlayerActivity extends AppCompatActivity {
 
     @Override
     public void onBackPressed(){
+        String title = getString(R.string.sp_back_alert_title);
+        String message = getString(R.string.sp_back_alert_message);
+        String ok = getString(R.string.sp_back_ok);
+        String cancel = getString(R.string.sp_back_cancel);
 
         if(player != null){
             if(player.isPlaying()){
                 AlertDialog.Builder exitAlert =  new AlertDialog.Builder(this)
                         .setIcon(android.R.drawable.ic_dialog_alert)
-                        .setTitle("Back pressed !")
-                        .setMessage("Do you want to go back to previous screen? Song playback will be stopped.")
-                        .setPositiveButton("Yes, No problem.", new DialogInterface.OnClickListener()
+                        .setTitle(title)
+                        .setMessage(message)
+                        .setPositiveButton(ok, new DialogInterface.OnClickListener()
                         {
                             @Override
                             public void onClick(DialogInterface dialog, int which) {
@@ -96,7 +100,7 @@ public class SongPlayerActivity extends AppCompatActivity {
                             }
 
                         })
-                        .setNegativeButton("No, Please keep playing.", null);
+                        .setNegativeButton(cancel, null);
 
                 exitAlert.show();
 

@@ -39,7 +39,7 @@ import ceg.avtechlabs.sbm.util.ToastUtil;
 
 public class MainActivity extends ActionBarActivity {
     TimePicker tp;
-    final int TIME_DIALOG_ID=999;
+    final int TIME_DIALOG_ID = 999;
     int chosenHour = 25,chosenMinute = 61 ,hour,min ,amORpm;
     MediaPlayer player;
     boolean songPlaying, timeChosen = false;
@@ -82,24 +82,31 @@ public class MainActivity extends ActionBarActivity {
         // as you specify a parent activity in AndroidManifest.xml.
         int id = item.getItemId();
 
+        String title = getString(R.string.rate_app_title);
+        String message = getString(R.string.rate_app_message);
+        String ok = getString(R.string.rate_app_ok);
+        String cancel = getString(R.string.rate_app_cancel);
+        final String uri = getString(R.string.rate_app_uri);
+
         //noinspection SimplifiableIfStatement
         if (id == R.id.action_rate) {
             AlertDialog.Builder alertBuilder = new AlertDialog.Builder(this)
                     .setIcon(android.R.drawable.ic_dialog_alert)
-                    .setTitle("Rate and Review")
-                    .setMessage("Do you like the application ? Please spare a moment to rate and review the app.")
-                    .setPositiveButton("Rate Now", new DialogInterface.OnClickListener() {
+                    .setTitle(title)
+                    .setMessage(message)
+                    .setPositiveButton(ok, new DialogInterface.OnClickListener() {
                         @Override
                         public void onClick(DialogInterface dialog, int which) {
                             Intent rateIntent = new Intent(Intent.ACTION_VIEW);
-                            rateIntent.setData(Uri.parse("market://details?id=ceg.avtechlabs.sbm"));
+                            rateIntent.setData(Uri.parse(uri));
                             if (!rateMyApplication(rateIntent)) {
-                                ToastUtil.showToast(getApplicationContext(), "Could not open play store.Try after some time");
+                                ToastUtil.showToast(getApplicationContext(), getString(R.string
+                                    .rate_app_error_playstore));
                             }
                         }
 
                     })
-                    .setNegativeButton("Rate Later", null);
+                    .setNegativeButton(cancel, null);
             alertBuilder.show();
             return true;
         }
@@ -109,11 +116,16 @@ public class MainActivity extends ActionBarActivity {
 
     public void onBackPressed()
     {
-       AlertDialog.Builder exitAlert =  new AlertDialog.Builder(this)
+        String title = getString(R.string.exit_conf_title);
+        String message = getString(R.string.exit_conf_message);
+        String yes = getString(R.string.yes);
+        String no = getString(R.string.no);
+
+        AlertDialog.Builder exitAlert =  new AlertDialog.Builder(this)
                 .setIcon(android.R.drawable.ic_dialog_alert)
-                .setTitle("Exit confirmation")
-                .setMessage("Do you want to exit the application?")
-                .setPositiveButton("Yes", new DialogInterface.OnClickListener()
+                .setTitle(title)
+                .setMessage(message)
+                .setPositiveButton(yes, new DialogInterface.OnClickListener()
                 {
                     @Override
                     public void onClick(DialogInterface dialog, int which) {
@@ -121,7 +133,7 @@ public class MainActivity extends ActionBarActivity {
                     }
 
                 })
-                .setNegativeButton("No", null);
+                .setNegativeButton(no, null);
 
         exitAlert.show();
 
@@ -170,13 +182,20 @@ public class MainActivity extends ActionBarActivity {
         else
             ap = "PM";
 
+        String yes = getString(R.string.yes);
+        String no = getString(R.string.no);
+        String title = getString(R.string.scheduler_title);
+        String message = String.format(getString(R.string.scheduler_message), hr, chosenMinute,
+            ap);
+
+
         //this condition checks if hour and minute are equal to initialized values. If so, the user has not chosen time, so don't display the alert.
         //ToastUtil.showToast(getApplicationContext(), "inside chooset ime algo");
         if(chosenHour != 25 && chosenMinute != 61){
             //ToastUtil.showToast(getApplicationContext(), "in if");
-            AlertDialog.Builder scheduleAlerter = new AlertDialog.Builder(this).setTitle("Scheduler")
-                    .setMessage("Schedule Suprabhatham to play at " + hr + ":" + chosenMinute + " " + ap)
-                    .setPositiveButton("Yes", new DialogInterface.OnClickListener() {
+            AlertDialog.Builder scheduleAlerter = new AlertDialog.Builder(this).setTitle(title)
+                    .setMessage(message)
+                    .setPositiveButton(yes, new DialogInterface.OnClickListener() {
                         @Override
                         public void onClick(DialogInterface dialog, int which) {
 
@@ -192,13 +211,16 @@ public class MainActivity extends ActionBarActivity {
                             recurringAlert();
 
                             Alarm.setAlarm(getApplicationContext(), ms);
-                            ToastUtil.showToast(getApplicationContext(), "Suprabhadham will play after " + hrs + " hours " + mins + " minutes");
+
+                            String toastMessage = String.format(getString(R.string.scheduler_toast)
+                              , hrs, mins);
+                            ToastUtil.showToast(getApplicationContext(), toastMessage);
 
                             mixPanelUtil.trackEvent("Scheduler Ok");
                         }
 
                     })
-                    .setNegativeButton("No", null);
+                    .setNegativeButton(no, null);
             scheduleAlerter.show();
         }
     }
@@ -217,7 +239,9 @@ public class MainActivity extends ActionBarActivity {
 
 
                         if(isOsLowerThanLollipop()){
-                            timePickerDialog.setButton(TimePickerDialog.BUTTON_POSITIVE, "Schedule", new DialogInterface.OnClickListener() {
+                            timePickerDialog.setButton(TimePickerDialog.BUTTON_POSITIVE,
+                                getString(R.string.schedule),
+                                new DialogInterface.OnClickListener() {
                                 @Override
                                 public void onClick(DialogInterface dialog, int which) {
                                     //ToastUtil.showToast(getApplicationContext(), "time chosen");
@@ -303,9 +327,14 @@ public class MainActivity extends ActionBarActivity {
 
     private void recurringAlert(){
 
-        AlertDialog.Builder alert = new AlertDialog.Builder(this).setTitle("Confirmation")
-                .setMessage("Do you want to play Suprabhatham at scheduled time everyday?")
-                .setPositiveButton("Yes", new DialogInterface.OnClickListener() {
+        String yes = getString(R.string.yes);
+        String no = getString(R.string.no);
+        String title = getString(R.string.recur_alert_title);
+        String message = getString(R.string.recur_alert_message);
+
+        AlertDialog.Builder alert = new AlertDialog.Builder(this).setTitle(title)
+                .setMessage(message)
+                .setPositiveButton(yes, new DialogInterface.OnClickListener() {
                     @Override
                     public void onClick(DialogInterface dialog, int which) {
                         DatabaseHandler db = new DatabaseHandler(getApplicationContext());
@@ -314,7 +343,7 @@ public class MainActivity extends ActionBarActivity {
                         mixPanelUtil.trackEvent("Recurring Alert:Yes");
                     }
                 })
-                .setNegativeButton("No", null);
+                .setNegativeButton(no, null);
         alert.show();
     }
 

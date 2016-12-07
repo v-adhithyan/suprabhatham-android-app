@@ -7,7 +7,7 @@
     <Button
         android:layout_width="fill_parent"
         android:layout_height="wrap_content"
-        android:text="Scheduler"
+        android:text="@string/but_scheduler"
         android:id="@+id/buttonScheduler"
         android:background="@drawable/green_button"
         android:textColor="#ffffff"
@@ -21,7 +21,7 @@
     <Button
         android:layout_width="fill_parent"
         android:layout_height="wrap_content"
-        android:text="Lyrics"
+        android:text="@string/but_view_lyrics"
         android:id="@+id/buttonLyrics"
         android:background="@drawable/green_button"
         android:textColor="#ffffff"
@@ -55,7 +55,7 @@
     <Button
         android:layout_width="fill_parent"
         android:layout_height="wrap_content"
-        android:text="Play Suprabhatham"
+        android:text="@string/but_play_sbm"
         android:id="@+id/playButton"
         android:layout_below="@+id/buttonLyrics"
         android:layout_centerHorizontal="true"

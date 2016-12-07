@@ -35,13 +35,13 @@ public class ViewLyricsActivity extends ActionBarActivity {
         getSupportActionBar().setBackgroundDrawable(new ColorDrawable(getResources().getColor(R.color.actionBarColor)));
         assetManager = getAssets();
         if(fname.equals("english.txt"))
-            setTitle("English Lyrics");
+            setTitle(getString(R.string.vl_english_title));
         else if(fname.equals("tamil.txt"))
-            setTitle("சுப்ரபாதம் தமிழ் வரிகள்");
+            setTitle(getString(R.string.vl_tamil_title));
         else if(fname.equals("kannada.txt"))
-            setTitle("ಕನ್ನಡ ಭಾವಗಿತೆಗಳ ಸುಪ್ರಭಾತಮ್");
+            setTitle(getString(R.string.vl_kannada_title));
         else if(fname.equals("telugu.txt"))
-            setTitle("సుప్రభాతం తెలుగు పాట సాహిత్యం");
+            setTitle(getString(R.string.vl_telugu_title));
         try
         {
             inputStream = assetManager.open(fname);

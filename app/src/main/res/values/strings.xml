@@ -14,4 +14,50 @@
     <string name="gcm_project_id">suprabhatham-1204</string>
     <string name="gcm_push_domain">http://avsbm.xyz</string>
     <string name="title_activity_song_player">SongPlayer</string>
+
+    <string name="rate_app_title">Rate and Review</string>
+    <string name="rate_app_message">Do you like the application ? Please spare a moment to rate and review the app.</string>
+    <string name="rate_app_ok">Rate Now</string>
+    <string name="rate_app_cancel">Rate Later</string>
+    <string name="rate_app_uri">market://details?id=ceg.avtechlabs.sbm</string>
+    <string name="rate_app_error_playstore">Could not open PlayStore.Try after some time</string>
+
+    <string name="yes">Yes</string>
+    <string name="no">No</string>
+
+    <string name="exit_conf_title">Exit confirmation</string>
+    <string name="exit_conf_message">Do you want to exit Suprabhatham?</string>
+
+    <string name="schedule">Schedule</string>
+    <string name="scheduler_title">Scheduler</string>
+    <string name="scheduler_message">Schedule Suprabhatham to play at %1$d:%2$d %3$s</string>
+    <string name="scheduler_toast">Suprabhatham will play after %1$d hours %2$d minutes.</string>
+
+    <string name="recur_alert_title">Play everyday?</string>
+    <string name="recur_alert_message">Do you want to play Suprabhatham at scheduled time everyday?</string>
+
+    <!-- sp = song player -->
+    <string name="sp_back_alert_title">Back Pressed</string>
+    <string name="sp_back_alert_message">Song playback will be stopped.</string>
+    <string name="sp_back_ok">Yes, go back.</string>
+    <string name="sp_back_cancel">No, keep playing.</string>
+
+    <!-- vl = view lyrics -->
+    <string name="vl_english_title">English Lyrics</string>
+    <string name="vl_tamil_title">சுப்ரபாதம் தமிழ் வரிகள</string>
+    <string name="vl_kannada_title">ಕನ್ನಡ ಭಾವಗಿತೆಗಳ ಸುಪ್ರಭಾತಮ</string>
+    <string name="vl_telugu_title">సుప్రభాతం తెలుగు పాట సాహిత్యం</string>
+
+    <!-- layout related strings -->
+    <string name="but_tamil_lyrics">Tamil Lyrics</string>
+    <string name="but_english_lyrics">English Lyrics</string>
+    <string name="but_telugu_lyrics">Telugu Lyrics</string>
+    <string name="but_kannada_lyrics">Kannada Lyrics</string>
+
+    <string name="but_scheduler">Scheduler</string>
+    <string name="but_view_lyrics">Lyrics</string>
+    <string name="but_play_sbm">Play Suprabhatham</string>
+
+    <!-- tv = text view -->
+    <string name="tv_song_duration">(20 minutes 32 seconds)</string>
 </resources>
