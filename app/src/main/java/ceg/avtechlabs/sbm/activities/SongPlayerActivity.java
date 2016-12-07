@@ -18,7 +18,7 @@ import com.google.android.gms.ads.AdView;
 import com.triggertrap.seekarc.SeekArc;
 
 import ceg.avtechlabs.sbm.R;
-import ceg.avtechlabs.sbm.common.CommonUtil;
+import ceg.avtechlabs.sbm.util.CommonUtil;
 import ceg.avtechlabs.sbm.listeners.SeekbarListener;
 import ceg.avtechlabs.sbm.util.PlaybackUtil;
 

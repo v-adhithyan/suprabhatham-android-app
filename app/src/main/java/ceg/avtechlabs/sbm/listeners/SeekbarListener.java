@@ -1,10 +1,8 @@
 package ceg.avtechlabs.sbm.listeners;
 
-import android.widget.SeekBar;
-
 import com.triggertrap.seekarc.SeekArc;
 
-import ceg.avtechlabs.sbm.common.CommonUtil;
+import ceg.avtechlabs.sbm.util.CommonUtil;
 
 /**
  * Created by adhithyan-3592 on 14/04/16.

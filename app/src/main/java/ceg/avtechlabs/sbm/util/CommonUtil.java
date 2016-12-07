@@ -1,4 +1,4 @@
-package ceg.avtechlabs.sbm.common;
+package ceg.avtechlabs.sbm.util;
 
 /**
  * Created by adhithyan-3592 on 08/05/16.
