@@ -23,15 +23,24 @@ android {
 
 dependencies {
     compile fileTree(dir: 'libs', include: ['*.jar'])
-    compile 'com.android.support:appcompat-v7:24.+'
-    compile 'com.google.android.gms:play-services-ads:9.0.0'
-    compile 'com.buddy:androidsdk:+'
-    compile 'com.android.support:design:24.+'
-    compile 'com.github.Triggertrap:SeekArc:v1.1'
-    compile "com.mixpanel.android:mixpanel-android:4.+"
-    compile "com.google.android.gms:play-services:9.0.0"
-    compile group: 'org.json', name: 'json', version: '20090211'
 
+    // Google design libraries
+    compile 'com.android.support:appcompat-v7:24.2.1'
+    compile 'com.android.support:appcompat-v7:24.+'
+    compile 'com.android.support:design:24.+'
+
+    // Google support libraries
+    compile 'com.google.android.gms:play-services-ads:9.0.1'
+    compile "com.google.android.gms:play-services:9.0.1"
+
+    // Firebase for analytics & notification
     compile 'com.google.firebase:firebase-core:9.0.1'
     compile 'com.google.firebase:firebase-messaging:9.0.1'
+
+    // Other 3rd party libraries
+    // Custom Seekbar
+    compile 'com.github.Triggertrap:SeekArc:v1.1'
+
+    // Material Dialogs
+    compile 'com.afollestad.material-dialogs:core:0.9.1.0'
 }
