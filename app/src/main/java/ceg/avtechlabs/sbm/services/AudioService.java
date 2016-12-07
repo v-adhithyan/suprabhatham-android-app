@@ -10,13 +10,11 @@ import android.net.wifi.WifiManager;
 import android.os.IBinder;
 import android.os.PowerManager;
 import android.widget.SeekBar;
-import android.widget.Toast;
 
 import ceg.avtechlabs.sbm.R;
 import ceg.avtechlabs.sbm.threads.SeekbarProgressUpdaterThread;
 import ceg.avtechlabs.sbm.tracker.MixPanelUtil;
 import ceg.avtechlabs.sbm.util.ToastUtil;
-import ceg.avtechlabs.sbm.util.audio.PlaybackUtil;
 
 public class AudioService extends Service implements AudioManager.OnAudioFocusChangeListener {
     MediaPlayer mediaplayer = null;

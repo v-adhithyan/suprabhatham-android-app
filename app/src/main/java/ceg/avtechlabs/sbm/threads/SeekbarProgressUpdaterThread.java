@@ -2,7 +2,7 @@ package ceg.avtechlabs.sbm.threads;
 
 import android.content.Context;
 
-import ceg.avtechlabs.sbm.util.audio.PlaybackUtil;
+import ceg.avtechlabs.sbm.util.PlaybackUtil;
 
 import com.triggertrap.seekarc.SeekArc;
 

@@ -1,4 +1,4 @@
-package ceg.avtechlabs.sbm.util.audio;
+package ceg.avtechlabs.sbm.util;
 
 import android.content.Context;
 import android.media.MediaPlayer;

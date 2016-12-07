@@ -30,12 +30,12 @@ dependencies {
     compile 'com.android.support:design:24.+'
 
     // Google support libraries
-    compile 'com.google.android.gms:play-services-ads:9.0.1'
-    compile "com.google.android.gms:play-services:9.0.1"
+    compile 'com.google.android.gms:play-services-ads:9.0.0'
+    compile "com.google.android.gms:play-services:9.0.0"
 
     // Firebase for analytics & notification
-    compile 'com.google.firebase:firebase-core:9.0.1'
-    compile 'com.google.firebase:firebase-messaging:9.0.1'
+    compile 'com.google.firebase:firebase-core:9.0.0'
+    compile 'com.google.firebase:firebase-messaging:9.0.0'
 
     // Other 3rd party libraries
     // Custom Seekbar
@@ -43,4 +43,8 @@ dependencies {
 
     // Material Dialogs
     compile 'com.afollestad.material-dialogs:core:0.9.1.0'
+
+    // Mixpanel
+    compile "com.mixpanel.android:mixpanel-android:4.+"
+
 }
