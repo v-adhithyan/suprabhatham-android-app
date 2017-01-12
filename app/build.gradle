@@ -1,5 +1,5 @@
 apply plugin: 'com.android.application'
-apply plugin: 'com.google.gms.google-services'
+
 
 android {
     compileSdkVersion 24
@@ -36,12 +36,12 @@ dependencies {
     compile 'com.android.support:design:24.+'
 
     // Google support libraries
-    compile 'com.google.android.gms:play-services-ads:9.0.0'
-    compile "com.google.android.gms:play-services:9.0.0"
+    compile 'com.google.android.gms:play-services-ads:9.4.0'
+    compile "com.google.android.gms:play-services:9.4.0"
 
     // Firebase for analytics & notification
-    compile 'com.google.firebase:firebase-core:9.0.0'
-    compile 'com.google.firebase:firebase-messaging:9.0.0'
+    compile 'com.google.firebase:firebase-core:9.4.0'
+    compile 'com.google.firebase:firebase-messaging:9.4.0'
 
     // Other 3rd party libraries
     // Custom Seekbar
@@ -54,3 +54,5 @@ dependencies {
     compile "com.mixpanel.android:mixpanel-android:4.+"
 
 }
+
+apply plugin: 'com.google.gms.google-services'
