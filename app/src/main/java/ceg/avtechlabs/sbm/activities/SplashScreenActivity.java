@@ -10,6 +10,7 @@ import android.view.Window;
 import android.view.WindowManager;
 
 import ceg.avtechlabs.sbm.R;
+import ceg.avtechlabs.sbm.util.AnimUtil;
 
 
 public class SplashScreenActivity extends ActionBarActivity {
@@ -26,6 +27,8 @@ public class SplashScreenActivity extends ActionBarActivity {
         super.onCreate(savedInstanceState);
 
         setContentView(R.layout.activity_splash_screen);
+
+        AnimUtil.configureWindowEnterExitTransition(getWindow());
 
         new Handler().postDelayed(new Runnable()
         {

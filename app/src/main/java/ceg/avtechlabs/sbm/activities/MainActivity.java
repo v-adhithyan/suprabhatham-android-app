@@ -31,6 +31,7 @@ import ceg.avtechlabs.sbm.util.Alarm;
 import ceg.avtechlabs.sbm.services.AudioService;
 import ceg.avtechlabs.sbm.R;
 import ceg.avtechlabs.sbm.tracker.MixPanelUtil;
+import ceg.avtechlabs.sbm.util.AnimUtil;
 import ceg.avtechlabs.sbm.util.FileUtil;
 import ceg.avtechlabs.sbm.util.InfoUtil;
 import ceg.avtechlabs.sbm.util.TimeUtil;
@@ -54,6 +55,9 @@ public class MainActivity extends ActionBarActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
+
+        AnimUtil.configureWindowEnterExitTransition(getWindow());
+
         getSupportActionBar().setBackgroundDrawable(new ColorDrawable(getResources().getColor(R.color.actionBarColor)));
         setTitle(R.string.app_name);
         AdView mAdView = (AdView) findViewById(R.id.adView);
