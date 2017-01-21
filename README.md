@@ -14,7 +14,7 @@ If you love Suprabhatham, then this is your application. Listen to Suprabhatham 
 
 # Privacy Policy
 
-User email address and device name are collected to know the usage stats. The information collected will be used to improve the app and will not be shared with third parties.
+User email address and device name are collected along with application usage behaviour. The information collected is shared with third parties to improve the app and will not be used for marketing or other purposes.
 
 # Todo
 
